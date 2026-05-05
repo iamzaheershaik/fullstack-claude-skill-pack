@@ -34,18 +34,30 @@ skills/
 │   ├── code-reviewer.md              — PR checklists, security scanning, git hygiene, ADRs
 │   └── debug-assistant.md            — Error analysis, Node/React/MongoDB debugging patterns
 │
-└── ⭐ pro/
-    ├── saas-boilerplate.md           — Multi-tenant SaaS starter (auth, billing, teams, dashboards)
-    ├── stripe-integration.md         — Payment flows, subscriptions, webhooks, customer portal
-    ├── real-time-patterns.md         — WebSockets, Socket.io, live notifications, presence
-    ├── multi-tenant-saas.md          — Tenant isolation, subdomain routing, white-labeling
-    ├── ai-integration.md             — OpenAI/Claude APIs, streaming, RAG, embeddings
-    ├── email-system.md               — Transactional emails, templates, queues, deliverability
-    ├── admin-dashboard.md            — Admin panel, user management, audit logs, analytics
-    └── deployment-playbook.md        — AWS/GCP/VPS setup, zero-downtime, auto-scaling
+├── ⭐ pro/
+│   ├── saas-boilerplate.md           — Multi-tenant SaaS starter (auth, billing, teams, dashboards)
+│   ├── stripe-integration.md         — Payment flows, subscriptions, webhooks, customer portal
+│   ├── real-time-patterns.md         — WebSockets, Socket.io, live notifications, presence
+│   ├── multi-tenant-saas.md          — Tenant isolation, subdomain routing, white-labeling
+│   ├── ai-integration.md             — OpenAI/Claude APIs, streaming, RAG, embeddings
+│   ├── email-system.md               — Transactional emails, templates, queues, deliverability
+│   ├── admin-dashboard.md            — Admin panel, user management, audit logs, analytics
+│   └── deployment-playbook.md        — AWS/GCP/VPS setup, zero-downtime, auto-scaling
+│
+└── 🤖 ai-enterprise/
+    ├── project-contextual-assistant.md — Full-codebase RAG indexer, cross-file queries, dependency tracing
+    ├── design-to-code-synthesizer.md   — Vision-to-code, Figma integration, responsive React generation
+    ├── proactive-maintenance-advisor.md— Git hook tech debt analysis, refactoring suggestions, PR comments
+    ├── ai-testing-suite.md             — Auto test generation, sandbox execution, iterative debug loop
+    ├── domain-knowledge-assistant.md   — Domain-doc RAG, business rule enforcement, glossary validation
+    ├── devops-cicd-planner.md          — Text-to-pipeline, K8s manifests, Terraform, canary deploys
+    ├── compliance-security-auditor.md  — License scanning, OWASP SAST, SBOM, LLM security audit
+    ├── architecture-advisor.md         — Anti-pattern detection, system design review, blueprints
+    ├── code-review-facilitator.md      — PR summaries, style enforcement, reviewer assignment, ticket linking
+    └── observability-debugger.md       — Log-to-code mapping, error fingerprinting, AI root cause analysis
 ```
 
-**24 skills** · **9,100+ lines** · **6 categories**
+**34 skills** · **13,000+ lines** · **7 categories**
 
 ---
 
@@ -66,6 +78,9 @@ curl -sL ... | bash -s -- backend frontend
 
 # Only pro skills
 curl -sL ... | bash -s -- pro
+
+# Only AI enterprise skills
+curl -sL ... | bash -s -- ai-enterprise
 ```
 
 ### Install individual skills
@@ -82,7 +97,7 @@ curl -sL ... | bash -s -- react-patterns
 curl -sL ... | bash -s -- --list
 ```
 
-> **Categories:** `backend` · `frontend` · `devops` · `testing` · `tooling` · `pro` · `all`
+> **Categories:** `backend` · `frontend` · `devops` · `testing` · `tooling` · `pro` · `ai-enterprise` · `all`
 >
 > Re-run anytime to change your selection — it replaces the previous install cleanly.
 >
@@ -126,6 +141,9 @@ When building apps, read and follow these skill files as needed:
 - ~/fullstack-claude-skill-pack/skills/devops/docker-compose-builder.md
 - ~/fullstack-claude-skill-pack/skills/testing/test-writer.md
 - ~/fullstack-claude-skill-pack/skills/tooling/debug-assistant.md
+- ~/fullstack-claude-skill-pack/skills/ai-enterprise/domain-knowledge-assistant.md
+- ~/fullstack-claude-skill-pack/skills/ai-enterprise/compliance-security-auditor.md
+- ~/fullstack-claude-skill-pack/skills/ai-enterprise/devops-cicd-planner.md
 EOF
 ```
 
@@ -226,6 +244,21 @@ Each file is a standalone, dense reference document — useful even without AI:
 | **email-system** | Resend + React Email templates, BullMQ queue, drip campaigns, SPF/DKIM/DMARC, bounce handling |
 | **admin-dashboard** | Admin route separation, user management, impersonation, analytics aggregation, audit log with TTL |
 | **deployment-playbook** | AWS ECS + ECR deploy, VPS + Caddy auto-SSL, zero-downtime rolling updates, auto-scaling policies |
+
+### 🤖 AI Enterprise Skills
+
+| Skill | Key Patterns |
+|---|---|
+| **project-contextual-assistant** | AST-based codebase indexing, vector search, cross-file dependency tracing, context-budgeted prompts |
+| **design-to-code-synthesizer** | Vision model element detection, layout grid inference, React/CSS generation, Figma API, a11y audit |
+| **proactive-maintenance-advisor** | Cyclomatic complexity scoring, dead code detection, duplicate finder, LLM refactoring suggestions |
+| **ai-testing-suite** | Unit/integration/E2E auto-generation, sandbox runner, iterative fix loop, coverage gap analysis |
+| **domain-knowledge-assistant** | Multi-format doc ingestion, semantic chunking, domain-aware code gen, glossary naming enforcer |
+| **devops-cicd-planner** | Text-to-YAML pipeline gen, K8s manifests, Terraform IaC, canary/rollback, pipeline validation |
+| **compliance-security-auditor** | Dependency license scan, OWASP static checks, LLM deep audit, SBOM generation, SARIF output |
+| **architecture-advisor** | Anti-pattern detection (6+ rules), scaling decision tree, caching strategy, Mermaid diagram gen |
+| **code-review-facilitator** | PR auto-summary, style rule enforcement, knowledge-based reviewer matching, ticket linking |
+| **observability-debugger** | Structured log parsing, stack trace→code mapping, error fingerprinting, AI diagnosis, Slack alerts |
 
 ---
 

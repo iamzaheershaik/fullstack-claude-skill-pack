@@ -6,7 +6,7 @@
 # Install multiple:       curl -sL https://raw.githubusercontent.com/iamzaheershaik/fullstack-claude-skill-pack/main/install.sh | bash -s -- backend frontend
 # Install single skill:   curl -sL https://raw.githubusercontent.com/iamzaheershaik/fullstack-claude-skill-pack/main/install.sh | bash -s -- auth-system
 #
-# Categories: backend, frontend, devops, testing, tooling, pro, all
+# Categories: backend, frontend, devops, testing, tooling, pro, ai-enterprise, all
 # Individual skills: auth-system, api-design, database-patterns, react-patterns, etc.
 
 set -e
@@ -27,6 +27,7 @@ CATEGORIES=(
   [testing]="testing/test-writer.md testing/mock-factory.md"
   [tooling]="tooling/mern-scaffolder.md tooling/code-reviewer.md tooling/debug-assistant.md"
   [pro]="pro/saas-boilerplate.md pro/stripe-integration.md pro/real-time-patterns.md pro/multi-tenant-saas.md pro/ai-integration.md pro/email-system.md pro/admin-dashboard.md pro/deployment-playbook.md"
+  [ai-enterprise]="ai-enterprise/project-contextual-assistant.md ai-enterprise/design-to-code-synthesizer.md ai-enterprise/proactive-maintenance-advisor.md ai-enterprise/ai-testing-suite.md ai-enterprise/domain-knowledge-assistant.md ai-enterprise/devops-cicd-planner.md ai-enterprise/compliance-security-auditor.md ai-enterprise/architecture-advisor.md ai-enterprise/code-review-facilitator.md ai-enterprise/observability-debugger.md"
 )
 
 # Map individual skill names to paths
@@ -62,6 +63,17 @@ SKILL_MAP=(
   [email-system]="pro/email-system.md"
   [admin-dashboard]="pro/admin-dashboard.md"
   [deployment-playbook]="pro/deployment-playbook.md"
+  # AI Enterprise
+  [project-contextual-assistant]="ai-enterprise/project-contextual-assistant.md"
+  [design-to-code-synthesizer]="ai-enterprise/design-to-code-synthesizer.md"
+  [proactive-maintenance-advisor]="ai-enterprise/proactive-maintenance-advisor.md"
+  [ai-testing-suite]="ai-enterprise/ai-testing-suite.md"
+  [domain-knowledge-assistant]="ai-enterprise/domain-knowledge-assistant.md"
+  [devops-cicd-planner]="ai-enterprise/devops-cicd-planner.md"
+  [compliance-security-auditor]="ai-enterprise/compliance-security-auditor.md"
+  [architecture-advisor]="ai-enterprise/architecture-advisor.md"
+  [code-review-facilitator]="ai-enterprise/code-review-facilitator.md"
+  [observability-debugger]="ai-enterprise/observability-debugger.md"
 )
 
 # ── Functions ──────────────────────────────────────────────
@@ -79,7 +91,7 @@ show_help() {
   echo "  install.sh --list              Show all available skills"
   echo "  install.sh --help              Show this help"
   echo ""
-  echo "Categories: backend, frontend, devops, testing, tooling, pro, all"
+  echo "Categories: backend, frontend, devops, testing, tooling, pro, ai-enterprise, all"
   echo ""
   echo "Examples:"
   echo "  install.sh backend             Install all 4 backend skills"
@@ -112,6 +124,12 @@ show_list() {
   echo "⭐ pro (8 skills)"
   echo "    saas-boilerplate  stripe-integration  real-time-patterns  multi-tenant-saas"
   echo "    ai-integration  email-system  admin-dashboard  deployment-playbook"
+  echo ""
+  echo "🤖 ai-enterprise (10 skills)"
+  echo "    project-contextual-assistant  design-to-code-synthesizer  proactive-maintenance-advisor"
+  echo "    ai-testing-suite  domain-knowledge-assistant  devops-cicd-planner"
+  echo "    compliance-security-auditor  architecture-advisor  code-review-facilitator"
+  echo "    observability-debugger"
   echo ""
 }
 
@@ -167,7 +185,7 @@ fi
 # Step 2: Resolve which skills to install
 if [ $# -eq 0 ]; then
   SELECTED=$(resolve_skills all)
-  echo "⚙️  Installing: ALL skills (24)"
+  echo "⚙️  Installing: ALL skills (34)"
 else
   SELECTED=$(resolve_skills "$@")
   echo "⚙️  Installing: $*"
