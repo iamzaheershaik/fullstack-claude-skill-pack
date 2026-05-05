@@ -4,24 +4,6 @@
 
 ---
 
-## 📦 Suggested Repository Name
-
-```
-claude-skills
-```
-
-**Alternatives:**
-
-| Name | Vibe |
-|---|---|
-| `claude-skills` | Clean, simple, searchable |
-| `ai-dev-skills` | Framework-agnostic branding |
-| `mern-skills` | Stack-specific, precise |
-| `fullstack-skill-pack` | Descriptive, community-friendly |
-| `claude-playbook` | Sounds like a strategic guide |
-
----
-
 ## 🗂️ What's Inside
 
 ```
@@ -47,33 +29,154 @@ skills/
 │   ├── test-writer.md                — Vitest, Supertest, Playwright, React Testing Library
 │   └── mock-factory.md               — Faker factories, MSW, nock, time/service mocking
 │
-└── 🔧 tooling/
-    ├── mern-scaffolder.md            — Full monorepo project generator (Express + React + shared)
-    ├── code-reviewer.md              — PR checklists, security scanning, git hygiene, ADRs
-    └── debug-assistant.md            — Error analysis, Node/React/MongoDB debugging patterns
+├── 🔧 tooling/
+│   ├── mern-scaffolder.md            — Full monorepo project generator (Express + React + shared)
+│   ├── code-reviewer.md              — PR checklists, security scanning, git hygiene, ADRs
+│   └── debug-assistant.md            — Error analysis, Node/React/MongoDB debugging patterns
+│
+└── ⭐ pro/
+    ├── saas-boilerplate.md           — Multi-tenant SaaS starter (auth, billing, teams, dashboards)
+    ├── stripe-integration.md         — Payment flows, subscriptions, webhooks, customer portal
+    ├── real-time-patterns.md         — WebSockets, Socket.io, live notifications, presence
+    ├── multi-tenant-saas.md          — Tenant isolation, subdomain routing, white-labeling
+    ├── ai-integration.md             — OpenAI/Claude APIs, streaming, RAG, embeddings
+    ├── email-system.md               — Transactional emails, templates, queues, deliverability
+    ├── admin-dashboard.md            — Admin panel, user management, audit logs, analytics
+    └── deployment-playbook.md        — AWS/GCP/VPS setup, zero-downtime, auto-scaling
 ```
 
-**16 skills** · **6,300+ lines** · **5 categories**
+**24 skills** · **9,100+ lines** · **6 categories**
 
 ---
 
-## 🚀 How to Use
+## 🚀 Quick Install
 
-### With Claude (Anthropic)
-Add any skill as a **Project Knowledge** file in the Claude console, or reference it directly in your prompt:
-
-```
-Follow the auth-system skill to implement JWT authentication with refresh token rotation.
+### Install everything
+```bash
+curl -sL https://raw.githubusercontent.com/iamzaheershaik/fullstack-claude-skill-pack/main/install.sh | bash
 ```
 
-### With Gemini / Other AI Assistants
-Attach a skill file as context or paste it into system instructions:
+### Install by category
+```bash
+# Only backend skills
+curl -sL ... | bash -s -- backend
+
+# Backend + frontend
+curl -sL ... | bash -s -- backend frontend
+
+# Only pro skills
+curl -sL ... | bash -s -- pro
+```
+
+### Install individual skills
+```bash
+# Just auth and Stripe
+curl -sL ... | bash -s -- auth-system stripe-integration
+
+# Just React patterns
+curl -sL ... | bash -s -- react-patterns
+```
+
+### List all available skills
+```bash
+curl -sL ... | bash -s -- --list
+```
+
+> **Categories:** `backend` · `frontend` · `devops` · `testing` · `tooling` · `pro` · `all`
+>
+> Re-run anytime to change your selection — it replaces the previous install cleanly.
+>
+> Update: `cd ~/fullstack-claude-skill-pack && git pull`
+
+---
+
+## 📖 Manual Setup
+
+### Step 1: Clone the repo
+
+```bash
+git clone https://github.com/iamzaheershaik/fullstack-claude-skill-pack.git
+cd fullstack-claude-skill-pack
+```
+
+---
+
+### 🔷 Claude Code (Terminal Agent)
+
+#### Option A: Global Setup — All Projects (Recommended)
+
+Apply skills to **every project** automatically:
+
+```bash
+# Create global Claude config (one-time)
+mkdir -p ~/.claude
+
+# Add to global instructions
+cat >> ~/.claude/CLAUDE.md << 'EOF'
+
+# Claude Skills
+When building apps, read and follow these skill files as needed:
+- ~/fullstack-claude-skill-pack/skills/backend/production-app-builder.md
+- ~/fullstack-claude-skill-pack/skills/backend/auth-system.md
+- ~/fullstack-claude-skill-pack/skills/backend/api-design.md
+- ~/fullstack-claude-skill-pack/skills/backend/database-patterns.md
+- ~/fullstack-claude-skill-pack/skills/frontend/frontend-design.md
+- ~/fullstack-claude-skill-pack/skills/frontend/react-patterns.md
+- ~/fullstack-claude-skill-pack/skills/frontend/performance-audit.md
+- ~/fullstack-claude-skill-pack/skills/devops/docker-compose-builder.md
+- ~/fullstack-claude-skill-pack/skills/testing/test-writer.md
+- ~/fullstack-claude-skill-pack/skills/tooling/debug-assistant.md
+EOF
+```
+
+Claude Code will now reference these skills in **every session, every project**.
+
+#### Option B: Per-Project Setup
+
+Add only relevant skills to a specific project's `CLAUDE.md`:
+
+```bash
+# In your project root, create or append to CLAUDE.md
+cat >> CLAUDE.md << 'EOF'
+
+# Skills
+- Read ~/fullstack-claude-skill-pack/skills/backend/auth-system.md for authentication
+- Read ~/fullstack-claude-skill-pack/skills/backend/api-design.md for API design
+- Read ~/fullstack-claude-skill-pack/skills/frontend/react-patterns.md for React code
+EOF
+```
+
+#### Option C: Per-Prompt (One-Off)
+
+Reference any skill directly in your prompt:
+
+```
+Read ~/fullstack-claude-skill-pack/skills/backend/auth-system.md
+and implement JWT login with refresh token rotation for my Express app.
+```
+
+---
+
+### 🔷 Claude Pro (claude.ai)
+
+1. Go to **claude.ai** → Create a **Project**
+2. Click **Project Knowledge** → Upload the `.md` files you need
+3. Start chatting — Claude will follow the skills automatically
+
+---
+
+### 🔷 Other AI Tools (Cursor, Gemini, ChatGPT, Windsurf)
+
+Attach any skill file as context or paste it into system/custom instructions:
 
 ```
 Use the attached database-patterns.md as your reference for MongoDB schema design.
 ```
 
-### As a Personal Reference
+---
+
+### 📖 As a Personal Reference
+
 Each file is a standalone, dense reference document — useful even without AI:
 
 - **Checklists** for security, deployment, accessibility
@@ -110,6 +213,19 @@ Each file is a standalone, dense reference document — useful even without AI:
 | **monitoring-setup** | Pino structured logging with redaction, Sentry with source maps, graceful shutdown handler |
 | **mern-scaffolder** | Complete Turborepo monorepo template with server, client, and shared validation package |
 | **debug-assistant** | Error symptom → diagnosis table, N+1 detection, memory leak checklist, event loop blocking detection |
+
+### ⭐ Pro Skills
+
+| Skill | Key Patterns |
+|---|---|
+| **saas-boilerplate** | Org/membership schema, plan config with limits, team invites, onboarding flow, usage tracking, feature flags |
+| **stripe-integration** | Checkout sessions, webhook handler (idempotent), subscription management, metered billing, dunning emails |
+| **real-time-patterns** | Socket.io + Redis adapter, auth on connect, live notifications, presence tracking, chat rooms |
+| **multi-tenant-saas** | Tenant scoping middleware, Mongoose plugin, subdomain routing, custom domains, data isolation service |
+| **ai-integration** | OpenAI/Claude streaming via SSE, RAG with vector search, prompt templates, cost controls per org |
+| **email-system** | Resend + React Email templates, BullMQ queue, drip campaigns, SPF/DKIM/DMARC, bounce handling |
+| **admin-dashboard** | Admin route separation, user management, impersonation, analytics aggregation, audit log with TTL |
+| **deployment-playbook** | AWS ECS + ECR deploy, VPS + Caddy auto-SSL, zero-downtime rolling updates, auto-scaling policies |
 
 ---
 
