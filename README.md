@@ -44,20 +44,24 @@ skills/
 │   ├── admin-dashboard.md            — Admin panel, user management, audit logs, analytics
 │   └── deployment-playbook.md        — AWS/GCP/VPS setup, zero-downtime, auto-scaling
 │
-└── 🤖 ai-enterprise/
-    ├── project-contextual-assistant.md — Full-codebase RAG indexer, cross-file queries, dependency tracing
-    ├── design-to-code-synthesizer.md   — Vision-to-code, Figma integration, responsive React generation
-    ├── proactive-maintenance-advisor.md— Git hook tech debt analysis, refactoring suggestions, PR comments
-    ├── ai-testing-suite.md             — Auto test generation, sandbox execution, iterative debug loop
-    ├── domain-knowledge-assistant.md   — Domain-doc RAG, business rule enforcement, glossary validation
-    ├── devops-cicd-planner.md          — Text-to-pipeline, K8s manifests, Terraform, canary deploys
-    ├── compliance-security-auditor.md  — License scanning, OWASP SAST, SBOM, LLM security audit
-    ├── architecture-advisor.md         — Anti-pattern detection, system design review, blueprints
-    ├── code-review-facilitator.md      — PR summaries, style enforcement, reviewer assignment, ticket linking
-    └── observability-debugger.md       — Log-to-code mapping, error fingerprinting, AI root cause analysis
+├── 🤖 ai-enterprise/
+│   ├── project-contextual-assistant.md — Full-codebase RAG indexer, cross-file queries, dependency tracing
+│   ├── design-to-code-synthesizer.md   — Vision-to-code, Figma integration, responsive React generation
+│   ├── proactive-maintenance-advisor.md— Git hook tech debt analysis, refactoring suggestions, PR comments
+│   ├── ai-testing-suite.md             — Auto test generation, sandbox execution, iterative debug loop
+│   ├── domain-knowledge-assistant.md   — Domain-doc RAG, business rule enforcement, glossary validation
+│   ├── devops-cicd-planner.md          — Text-to-pipeline, K8s manifests, Terraform, canary deploys
+│   ├── compliance-security-auditor.md  — License scanning, OWASP SAST, SBOM, LLM security audit
+│   ├── architecture-advisor.md         — Anti-pattern detection, system design review, blueprints
+│   ├── code-review-facilitator.md      — PR summaries, style enforcement, reviewer assignment, ticket linking
+│   └── observability-debugger.md       — Log-to-code mapping, error fingerprinting, AI root cause analysis
+│
+└── 🏛️ system-design/
+    └── system-design-architect.md      — DDIA-based framework: data models, replication, partitioning,
+                                          transactions, batch/stream processing, capacity planning
 ```
 
-**34 skills** · **13,000+ lines** · **7 categories**
+**35 skills** · **14,000+ lines** · **8 categories**
 
 ---
 
@@ -97,7 +101,7 @@ curl -sL ... | bash -s -- react-patterns
 curl -sL ... | bash -s -- --list
 ```
 
-> **Categories:** `backend` · `frontend` · `devops` · `testing` · `tooling` · `pro` · `ai-enterprise` · `all`
+> **Categories:** `backend` · `frontend` · `devops` · `testing` · `tooling` · `pro` · `ai-enterprise` · `system-design` · `all`
 >
 > Re-run anytime to change your selection — it replaces the previous install cleanly.
 >
@@ -259,6 +263,12 @@ Each file is a standalone, dense reference document — useful even without AI:
 | **architecture-advisor** | Anti-pattern detection (6+ rules), scaling decision tree, caching strategy, Mermaid diagram gen |
 | **code-review-facilitator** | PR auto-summary, style rule enforcement, knowledge-based reviewer matching, ticket linking |
 | **observability-debugger** | Structured log parsing, stack trace→code mapping, error fingerprinting, AI diagnosis, Slack alerts |
+
+### 🏛️ System Design
+
+| Skill | Key Patterns |
+|---|---|
+| **system-design-architect** | DDIA-grounded framework: requirements engineering (QPS/SLA estimation), data model selection (relational/document/graph/wide-column), storage engines (B-Tree vs LSM-Tree), replication & partitioning strategies, ACID transactions & isolation levels, batch & stream processing (Lambda/Kappa), PACELC trade-offs, consensus algorithms (Raft/Paxos), caching strategies, CQRS & event sourcing, capacity planning, anti-pattern detection |
 
 ---
 
