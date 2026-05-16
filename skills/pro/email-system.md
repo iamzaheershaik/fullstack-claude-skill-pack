@@ -1,3 +1,18 @@
+---
+name: Email System
+category: pro
+version: 1.0.0
+description: >
+  Build production email infrastructure. Transactional emails, templates, queues, deliverability, DMARC/SPF/DKIM. Resend + BullMQ + React Email.
+author: Zaheer Shaik
+tags:
+  - email
+  - transactional
+  - deliverability
+  - resend
+  - pro
+---
+
 # Email System — Claude Skill (Pro)
 
 > Build production email infrastructure. Transactional emails, templates, queues, deliverability, DMARC/SPF/DKIM. Resend + BullMQ + React Email.

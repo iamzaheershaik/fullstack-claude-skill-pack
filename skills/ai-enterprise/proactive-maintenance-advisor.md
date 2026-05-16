@@ -1,3 +1,18 @@
+---
+name: Proactive Code Maintenance & Refactoring Advisor
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Monitor code changes via Git hooks and CI, analyze for tech debt, dead code, and performance issues, and proactively suggest refactorings. Runs per-PR or on schedule. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - maintenance
+  - refactoring
+  - tech-debt
+  - ai
+  - enterprise
+---
+
 # Proactive Code Maintenance & Refactoring Advisor — Claude Skill (AI Enterprise)
 
 > Monitor code changes via Git hooks and CI, analyze for tech debt, dead code, and performance issues, and proactively suggest refactorings. Runs per-PR or on schedule. Node.js/TypeScript.

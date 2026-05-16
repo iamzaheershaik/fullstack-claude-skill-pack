@@ -1,3 +1,18 @@
+---
+name: CI/CD Pipeline
+category: devops
+version: 1.0.0
+description: >
+  Build automated CI/CD pipelines. GitHub Actions, deployment to Railway/Vercel/Render, preview deploys, database migrations, and rollbacks.
+author: Zaheer Shaik
+tags:
+  - ci-cd
+  - github-actions
+  - deployment
+  - automation
+  - devops
+---
+
 # CI/CD Pipeline — Claude Skill
 
 > Build automated CI/CD pipelines. GitHub Actions, deployment to Railway/Vercel/Render, preview deploys, database migrations, rollbacks.

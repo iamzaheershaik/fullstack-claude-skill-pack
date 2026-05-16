@@ -1,3 +1,18 @@
+---
+name: AI-Powered Testing & Debugging Suite
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Auto-generate unit/integration/E2E tests from code or specs, execute in sandbox, capture failures, and iteratively refine. Closes the write-run-debug loop. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - ai
+  - testing
+  - debugging
+  - automation
+  - enterprise
+---
+
 # AI-Powered Testing & Debugging Suite — Claude Skill (AI Enterprise)
 
 > Auto-generate unit/integration/E2E tests from code or specs, execute in sandbox, capture failures, and iteratively refine. Closes the write→run→debug loop. Node.js/TypeScript.

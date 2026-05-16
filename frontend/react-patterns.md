@@ -1,3 +1,18 @@
+---
+name: React Patterns
+category: frontend
+version: 1.0.0
+description: >
+  Build maintainable, performant React applications. Component architecture, hooks, state management, forms, and routing. TypeScript-first.
+author: Zaheer Shaik
+tags:
+  - react
+  - hooks
+  - state-management
+  - typescript
+  - frontend
+---
+
 # React Patterns — Claude Skill
 
 > Build maintainable, performant React applications. Component architecture, hooks, state management, forms, routing. TypeScript-first.

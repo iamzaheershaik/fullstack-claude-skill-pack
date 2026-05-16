@@ -1,3 +1,18 @@
+---
+name: Compliance & Security Code Auditor
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Scan code for license compliance, security vulnerabilities, and regulatory violations. Combines SAST, SCA, and LLM reasoning. Integrates into CI/CD. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - security
+  - compliance
+  - auditing
+  - ai
+  - enterprise
+---
+
 # Compliance & Security Code Auditor — Claude Skill (AI Enterprise)
 
 > Scan code for license compliance, security vulnerabilities, and regulatory violations. Combines SAST, SCA, and LLM reasoning. Integrates into CI/CD. Node.js/TypeScript.

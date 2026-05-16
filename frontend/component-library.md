@@ -1,3 +1,18 @@
+---
+name: Component Library
+category: frontend
+version: 1.0.0
+description: >
+  Build scalable design systems and component libraries. Tokens, primitives, composition, Storybook, theming, and versioning. React + TypeScript.
+author: Zaheer Shaik
+tags:
+  - design-system
+  - components
+  - react
+  - storybook
+  - frontend
+---
+
 # Component Library — Claude Skill
 
 > Build scalable design systems and component libraries. Tokens, primitives, composition, Storybook, theming, versioning. React + TypeScript.

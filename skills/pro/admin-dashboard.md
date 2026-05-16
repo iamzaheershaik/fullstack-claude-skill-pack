@@ -1,3 +1,18 @@
+---
+name: Admin Dashboard
+category: pro
+version: 1.0.0
+description: >
+  Build full admin panels. RBAC-protected admin routes, data tables, analytics, user management, audit logs, and bulk operations. React + Express.
+author: Zaheer Shaik
+tags:
+  - admin
+  - dashboard
+  - rbac
+  - react
+  - pro
+---
+
 # Admin Dashboard — Claude Skill (Pro)
 
 > Build full admin panels. RBAC-protected admin routes, data tables, analytics, user management, audit logs, bulk operations. React + Express.

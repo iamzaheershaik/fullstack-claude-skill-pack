@@ -1,3 +1,18 @@
+---
+name: Test Writer
+category: testing
+version: 1.0.0
+description: >
+  Write comprehensive, maintainable tests. Vitest, Supertest, Playwright, React Testing Library. Test behavior, not implementation.
+author: Zaheer Shaik
+tags:
+  - testing
+  - vitest
+  - playwright
+  - unit-tests
+  - integration-tests
+---
+
 # Test Writer — Claude Skill
 
 > Write comprehensive, maintainable tests. Vitest, Supertest, Playwright, React Testing Library. Test behavior, not implementation.

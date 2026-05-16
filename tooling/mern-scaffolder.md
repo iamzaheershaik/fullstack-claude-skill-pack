@@ -1,3 +1,18 @@
+---
+name: MERN Scaffolder
+category: tooling
+version: 1.0.0
+description: >
+  Generate complete MERN stack projects. Express + MongoDB backend, React + Vite frontend, shared config, Docker, and CI/CD. Ready to develop in minutes.
+author: Zaheer Shaik
+tags:
+  - scaffolding
+  - mern
+  - boilerplate
+  - vite
+  - tooling
+---
+
 # MERN Scaffolder — Claude Skill
 
 > Generate complete MERN stack projects. Express + MongoDB backend, React + Vite frontend, shared config, Docker, CI/CD. Ready to develop in minutes.

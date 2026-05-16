@@ -1,3 +1,18 @@
+---
+name: Integrated DevOps/CICD Planner
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Generate CI/CD pipeline configs, Kubernetes manifests, Terraform scripts, and deployment plans from natural language. Supports GitHub Actions, GitLab CI, AWS, GCP. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - devops
+  - ci-cd
+  - kubernetes
+  - terraform
+  - enterprise
+---
+
 # Integrated DevOps/CICD Planner — Claude Skill (AI Enterprise)
 
 > Generate CI/CD pipeline configs, Kubernetes manifests, Terraform scripts, and deployment plans from natural language. Supports GitHub Actions, GitLab CI, AWS, GCP. Node.js/TypeScript.

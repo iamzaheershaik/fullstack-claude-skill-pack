@@ -1,3 +1,18 @@
+---
+name: Multi-Tenant SaaS
+category: pro
+version: 1.0.0
+description: >
+  Build multi-tenant applications. Tenant isolation, per-tenant billing, subdomain routing, data segregation, and white-labeling. MongoDB + Express.
+author: Zaheer Shaik
+tags:
+  - multi-tenant
+  - saas
+  - tenant-isolation
+  - billing
+  - pro
+---
+
 # Multi-Tenant SaaS — Claude Skill (Pro)
 
 > Build multi-tenant applications. Tenant isolation, per-tenant billing, subdomain routing, data segregation, white-labeling. MongoDB + Express.

@@ -1,3 +1,18 @@
+---
+name: Auth System
+category: backend
+version: 1.0.0
+description: >
+  Build production-grade authentication and authorization systems. JWT, sessions, OAuth, RBAC, password hashing, and security best practices.
+author: Zaheer Shaik
+tags:
+  - authentication
+  - authorization
+  - jwt
+  - security
+  - backend
+---
+
 # Auth System — Claude Skill
 
 > Implement production-grade authentication and authorization. JWT, OAuth 2.0, RBAC, session management, security hardening. MERN-first with portable patterns.

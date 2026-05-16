@@ -1,3 +1,18 @@
+---
+name: Observability & Debugging Integrator
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Correlate production logs, metrics, and error traces with source code. Auto-diagnose incidents, trace root causes, and suggest fixes. Integrates with ELK, Sentry, Prometheus. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - observability
+  - debugging
+  - monitoring
+  - ai
+  - enterprise
+---
+
 # Observability & Debugging Integrator — Claude Skill (AI Enterprise)
 
 > Correlate production logs, metrics, and error traces with source code. Auto-diagnose incidents, trace root causes, and suggest fixes. Integrates with ELK, Sentry, Prometheus. Node.js/TypeScript.

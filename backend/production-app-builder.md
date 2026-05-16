@@ -1,3 +1,18 @@
+---
+name: Production App Builder
+category: backend
+version: 1.0.0
+description: >
+  Build production-grade apps and websites. Prioritize correctness, security, performance, and maintainability. Direct, precise, and implementation-ready.
+author: Zaheer Shaik
+tags:
+  - production
+  - full-stack
+  - backend
+  - best-practices
+  - architecture
+---
+
 # Production App Builder — Claude Skill
 
 > Build production-grade apps and websites. Prioritize correctness, security, performance, and maintainability. Minimize token waste — be direct, precise, and implementation-ready.

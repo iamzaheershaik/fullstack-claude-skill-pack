@@ -1,3 +1,18 @@
+---
+name: Project-Wide Contextual Assistant
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Ingest an entire codebase as context. Answer cross-file queries, trace data flows, and generate code with full project awareness using RAG, AST parsing, and embeddings. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - project-context
+  - rag
+  - codebase-analysis
+  - ai
+  - enterprise
+---
+
 # Project-Wide Contextual Assistant — Claude Skill (AI Enterprise)
 
 > Ingest an entire codebase as context. Answer cross-file queries, trace data flows, and generate code with full project awareness using RAG, AST parsing, and embeddings. Node.js/TypeScript.

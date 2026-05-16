@@ -1,3 +1,18 @@
+---
+name: Debug Assistant
+category: tooling
+version: 1.0.0
+description: >
+  Systematically diagnose and fix bugs. Error analysis workflows, common Node.js/React/MongoDB error patterns, network debugging, memory leaks, and performance profiling.
+author: Zaheer Shaik
+tags:
+  - debugging
+  - error-handling
+  - profiling
+  - node
+  - tooling
+---
+
 # Debug Assistant — Claude Skill
 
 > Systematically diagnose and fix bugs. Error analysis workflows, common Node.js/React/MongoDB error patterns, network debugging, memory leaks, performance profiling.

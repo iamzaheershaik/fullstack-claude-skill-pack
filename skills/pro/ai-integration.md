@@ -1,3 +1,18 @@
+---
+name: AI Integration
+category: pro
+version: 1.0.0
+description: >
+  Integrate AI into production apps. OpenAI/Claude APIs, streaming, RAG, embeddings, vector search, prompt engineering, and cost optimization. Node.js.
+author: Zaheer Shaik
+tags:
+  - ai
+  - openai
+  - rag
+  - embeddings
+  - pro
+---
+
 # AI Integration — Claude Skill (Pro)
 
 > Integrate AI into production apps. OpenAI/Claude APIs, streaming, RAG, embeddings, vector search, prompt engineering, cost optimization. Node.js.

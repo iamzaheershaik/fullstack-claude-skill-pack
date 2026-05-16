@@ -1,3 +1,18 @@
+---
+name: Real-Time Patterns
+category: pro
+version: 1.0.0
+description: >
+  Build real-time features. WebSockets, Socket.io, live notifications, presence, chat, and collaborative editing. Node.js + React.
+author: Zaheer Shaik
+tags:
+  - websockets
+  - real-time
+  - socket-io
+  - notifications
+  - pro
+---
+
 # Real-Time Patterns — Claude Skill (Pro)
 
 > Build real-time features. WebSockets, Socket.io, live notifications, presence, chat, collaborative editing. Node.js + React.

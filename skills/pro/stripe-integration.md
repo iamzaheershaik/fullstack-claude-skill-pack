@@ -1,3 +1,18 @@
+---
+name: Stripe Integration
+category: pro
+version: 1.0.0
+description: >
+  Implement complete payment infrastructure. Checkout, subscriptions, webhooks, customer portal, invoices, metered billing, and dunning. Node.js + Stripe API.
+author: Zaheer Shaik
+tags:
+  - stripe
+  - payments
+  - subscriptions
+  - webhooks
+  - pro
+---
+
 # Stripe Integration — Claude Skill (Pro)
 
 > Implement complete payment infrastructure. Checkout, subscriptions, webhooks, customer portal, invoices, metered billing, dunning. Node.js + Stripe API.

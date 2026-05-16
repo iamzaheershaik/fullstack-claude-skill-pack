@@ -1,3 +1,18 @@
+---
+name: Frontend Design
+category: frontend
+version: 1.0.0
+description: >
+  Create visually stunning, modern web interfaces. Design systems, typography, color theory, layout patterns, animations, and accessibility. CSS-first with framework-agnostic principles.
+author: Zaheer Shaik
+tags:
+  - design
+  - css
+  - ui-ux
+  - animations
+  - frontend
+---
+
 # Frontend Design — Claude Skill
 
 > Create visually stunning, modern web interfaces. Design systems, typography, color theory, layout patterns, animations, and accessibility. CSS-first with framework-agnostic principles.

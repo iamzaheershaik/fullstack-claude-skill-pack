@@ -1,3 +1,18 @@
+---
+name: Performance Audit
+category: frontend
+version: 1.0.0
+description: >
+  Diagnose and fix frontend performance issues. Core Web Vitals, bundle analysis, rendering strategies, image/font optimization, and network tuning.
+author: Zaheer Shaik
+tags:
+  - performance
+  - web-vitals
+  - optimization
+  - lighthouse
+  - frontend
+---
+
 # Performance Audit — Claude Skill
 
 > Diagnose and fix frontend performance issues. Core Web Vitals, bundle analysis, rendering strategies, image/font optimization, network tuning.

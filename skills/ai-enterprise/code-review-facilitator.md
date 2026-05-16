@@ -1,3 +1,18 @@
+---
+name: Collaborative Code Review Facilitator
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Auto-summarize PRs, enforce style guides, suggest reviewers, link changes to tickets, and generate review comments. Integrates with GitHub/GitLab. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - code-review
+  - pull-requests
+  - github
+  - ai
+  - enterprise
+---
+
 # Collaborative Code Review Facilitator — Claude Skill (AI Enterprise)
 
 > Auto-summarize PRs, enforce style guides, suggest reviewers, link changes to tickets, and generate review comments. Integrates with GitHub/GitLab. Node.js/TypeScript.

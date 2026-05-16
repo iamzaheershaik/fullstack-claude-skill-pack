@@ -1,3 +1,18 @@
+---
+name: SaaS Boilerplate
+category: pro
+version: 1.0.0
+description: >
+  Build a complete SaaS application from scratch. Auth, billing, teams, dashboards, onboarding, and feature flags. MERN + Stripe. Ship in days, not months.
+author: Zaheer Shaik
+tags:
+  - saas
+  - boilerplate
+  - stripe
+  - mern
+  - pro
+---
+
 # SaaS Boilerplate — Claude Skill (Pro)
 
 > Build a complete SaaS application from scratch. Auth, billing, teams, dashboards, onboarding, feature flags. MERN + Stripe. Ship in days, not months.

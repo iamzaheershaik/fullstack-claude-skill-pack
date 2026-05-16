@@ -1,3 +1,18 @@
+---
+name: Monitoring Setup
+category: devops
+version: 1.0.0
+description: >
+  Implement production observability. Error tracking, structured logging, health checks, uptime monitoring, and alerting. Node.js/Express-first.
+author: Zaheer Shaik
+tags:
+  - monitoring
+  - observability
+  - logging
+  - alerting
+  - devops
+---
+
 # Monitoring Setup — Claude Skill
 
 > Implement production observability. Error tracking, structured logging, health checks, uptime monitoring, alerting. Node.js/Express-first.

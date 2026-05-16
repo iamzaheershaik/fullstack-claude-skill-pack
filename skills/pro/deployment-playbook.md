@@ -1,3 +1,18 @@
+---
+name: Deployment Playbook
+category: pro
+version: 1.0.0
+description: >
+  Deploy and scale production apps. AWS/GCP setup, zero-downtime deploys, auto-scaling, CDN, SSL, DNS, backup strategies, and incident response.
+author: Zaheer Shaik
+tags:
+  - deployment
+  - aws
+  - scaling
+  - production
+  - pro
+---
+
 # Deployment Playbook — Claude Skill (Pro)
 
 > Deploy and scale production apps. AWS/GCP setup, zero-downtime deploys, auto-scaling, CDN, SSL, DNS, backup strategies, incident response.

@@ -1,3 +1,18 @@
+---
+name: Database Patterns
+category: backend
+version: 1.0.0
+description: >
+  Design and implement database schemas, queries, and access patterns. MongoDB, PostgreSQL, indexing, migrations, connection pooling, and data modeling.
+author: Zaheer Shaik
+tags:
+  - database
+  - mongodb
+  - postgresql
+  - data-modeling
+  - backend
+---
+
 # Database Patterns — Claude Skill
 
 > Design, optimize, and maintain production databases. Schema design, migrations, indexing, query optimization. MongoDB-first with PostgreSQL patterns.

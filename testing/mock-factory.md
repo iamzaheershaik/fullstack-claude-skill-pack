@@ -1,3 +1,18 @@
+---
+name: Mock Factory
+category: testing
+version: 1.0.0
+description: >
+  Build test data factories and mock strategies. Faker.js factories, database seeding, API mocking with MSW, and external service mocks.
+author: Zaheer Shaik
+tags:
+  - testing
+  - mocks
+  - faker
+  - msw
+  - test-data
+---
+
 # Mock Factory — Claude Skill
 
 > Build test data factories and mock strategies. Faker.js factories, database seeding, API mocking with MSW, external service mocks.

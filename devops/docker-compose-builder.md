@@ -1,3 +1,18 @@
+---
+name: Docker Compose Builder
+category: devops
+version: 1.0.0
+description: >
+  Build production-ready Docker configurations. Dockerfiles, multi-service compose, dev/prod parity, optimization, volumes, and networking. Node.js/MERN-first.
+author: Zaheer Shaik
+tags:
+  - docker
+  - docker-compose
+  - containers
+  - devops
+  - mern
+---
+
 # Docker Compose Builder — Claude Skill
 
 > Build production-ready Docker configurations. Dockerfiles, multi-service compose, dev/prod parity, optimization, volumes, networking. Node.js/MERN-first.

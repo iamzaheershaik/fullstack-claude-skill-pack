@@ -3,7 +3,10 @@ name: System Design Architect
 category: system-design
 version: 1.0.0
 description: >
-  DDIA-grounded framework for architecting high-scale, reliable, and maintainable data-intensive systems. Covers requirements engineering, data modeling, storage engines, replication, partitioning, transactions, batch & stream processing, caching, consensus, and capacity planning.
+  DDIA-grounded framework for architecting high-scale, reliable, and maintainable
+  data-intensive systems. Covers requirements engineering, data modeling, storage
+  engines, replication, partitioning, transactions, batch & stream processing,
+  caching, consensus, and capacity planning.
 author: Zaheer Shaik
 tags:
   - system-design

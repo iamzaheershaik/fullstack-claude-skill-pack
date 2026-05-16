@@ -1,3 +1,18 @@
+---
+name: Code Reviewer
+category: tooling
+version: 1.0.0
+description: >
+  Systematic code review. Security scanning, performance checks, readability audit, PR review checklists, git hygiene, and ADR templates.
+author: Zaheer Shaik
+tags:
+  - code-review
+  - security
+  - best-practices
+  - git
+  - tooling
+---
+
 # Code Reviewer — Claude Skill
 
 > Systematic code review. Security scanning, performance checks, readability audit, PR review checklists, git hygiene, ADR templates.

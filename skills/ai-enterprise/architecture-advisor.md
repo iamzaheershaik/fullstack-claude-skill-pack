@@ -1,3 +1,18 @@
+---
+name: System Architecture Advisor
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Review system designs, suggest architectural improvements, detect anti-patterns, and generate architecture blueprints from requirements. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - architecture
+  - system-design
+  - anti-patterns
+  - ai
+  - enterprise
+---
+
 # System Architecture Advisor — Claude Skill (AI Enterprise)
 
 > Review system designs, suggest architectural improvements, detect anti-patterns, and generate architecture blueprints from requirements. Text-based analysis with pattern matching. Node.js/TypeScript.

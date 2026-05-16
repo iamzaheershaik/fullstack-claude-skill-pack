@@ -1,3 +1,18 @@
+---
+name: API Design
+category: backend
+version: 1.0.0
+description: >
+  Design and build production-grade RESTful APIs. Endpoint structure, versioning, error handling, pagination, rate limiting, and OpenAPI documentation.
+author: Zaheer Shaik
+tags:
+  - api
+  - rest
+  - backend
+  - express
+  - node
+---
+
 # API Design — Claude Skill
 
 > Design and implement production-grade APIs. REST, GraphQL, tRPC conventions. Versioning, pagination, error handling, documentation. MERN-first.

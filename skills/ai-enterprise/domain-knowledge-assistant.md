@@ -1,3 +1,18 @@
+---
+name: Domain Knowledge-Infused Assistant
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Load company-specific docs, business rules, API specs, and policies into RAG context. Generate code that respects domain constraints and internal conventions. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - domain-knowledge
+  - rag
+  - context
+  - ai
+  - enterprise
+---
+
 # Domain Knowledge-Infused Assistant — Claude Skill (AI Enterprise)
 
 > Load company-specific docs, business rules, API specs, and policies into RAG context. Generate code that respects domain constraints and internal conventions. Node.js/TypeScript.

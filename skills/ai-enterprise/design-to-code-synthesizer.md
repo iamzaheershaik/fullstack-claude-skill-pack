@@ -1,3 +1,18 @@
+---
+name: UI/UX Design-to-Code Synthesizer
+category: ai-enterprise
+version: 1.0.0
+description: >
+  Transform design assets (wireframes, Figma exports, screenshots) into production frontend code. Vision models detect UI elements, LLMs generate HTML/CSS/React. Node.js/TypeScript.
+author: Zaheer Shaik
+tags:
+  - design-to-code
+  - figma
+  - ui-ux
+  - ai
+  - enterprise
+---
+
 # UI/UX Design-to-Code Synthesizer — Claude Skill (AI Enterprise)
 
 > Transform design assets (wireframes, Figma exports, screenshots) into production frontend code. Vision models detect UI elements, LLMs generate HTML/CSS/React. Node.js/TypeScript.
