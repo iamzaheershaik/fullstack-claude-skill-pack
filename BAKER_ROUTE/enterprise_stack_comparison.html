@@ -1,0 +1,305 @@
+
+<h2 class="sr-only">Interactive enterprise tech stack comparison across all layers — backend, database, queue, search, cache, frontend, infra, and observability</h2>
+<style>
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:0;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.5rem}
+.layer-row{display:contents}
+.layer-label{background:var(--color-background-secondary);padding:10px 14px;font-size:12px;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:6px}
+.layer-label i{font-size:15px;color:var(--color-text-tertiary)}
+.stack-cell{padding:10px 14px;border-bottom:0.5px solid var(--color-border-tertiary);border-left:0.5px solid var(--color-border-tertiary);font-size:13px;color:var(--color-text-primary);vertical-align:top}
+.col-head{background:var(--color-background-secondary);padding:10px 14px;font-size:12px;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);border-left:0.5px solid var(--color-border-tertiary);text-align:center}
+.col-head-first{background:var(--color-background-secondary);padding:10px 14px;font-size:12px;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:500;margin-bottom:3px;margin-right:2px}
+.tag-b{background:var(--color-background-info);color:var(--color-text-info)}
+.tag-g{background:var(--color-background-success);color:var(--color-text-success)}
+.tag-r{background:var(--color-background-danger);color:var(--color-text-danger)}
+.tag-w{background:var(--color-background-warning);color:var(--color-text-warning)}
+.tag-n{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.tech-name{font-weight:500;color:var(--color-text-primary);display:block;margin-bottom:2px}
+.tech-note{font-size:12px;color:var(--color-text-secondary);line-height:1.4}
+.section-divider{background:var(--color-background-tertiary);padding:6px 14px;font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em;grid-column:1/-1;border-bottom:0.5px solid var(--color-border-tertiary)}
+.verdict-btn{font-size:12px;margin-top:6px;padding:4px 10px;cursor:pointer;border-radius:var(--border-radius-md)}
+</style>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.5rem">
+
+<div class="col-head-first"><i class="ti ti-layers-subtract" aria-hidden="true" style="font-size:14px;margin-right:4px"></i>Layer</div>
+<div class="col-head">MERN / Node.js stack<br><span style="font-weight:400;font-size:11px;color:var(--color-text-tertiary)">Startups · Indie · India MNCs</span></div>
+<div class="col-head">Java / Spring Boot stack<br><span style="font-weight:400;font-size:11px;color:var(--color-text-tertiary)">Banks · Infosys · TCS · MNCs</span></div>
+<div class="col-head">Go / Python stack<br><span style="font-weight:400;font-size:11px;color:var(--color-text-tertiary)">Google · Uber · High-scale SaaS</span></div>
+
+<div class="section-divider">Backend runtime</div>
+
+<div class="layer-label"><i class="ti ti-server" aria-hidden="true"></i>Runtime</div>
+<div class="stack-cell">
+  <span class="tech-name">Node.js + Express / Fastify</span>
+  <span class="tag tag-g">You know this</span>
+  <span class="tech-note">Non-blocking I/O. Excellent for API-heavy, real-time apps. Fastify is 2x faster than Express — switch immediately for production.</span>
+  <button class="verdict-btn" onclick="sendPrompt('When should I choose Fastify over Express in Node.js?')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Java 17+ / Spring Boot 3</span>
+  <span class="tag tag-b">MNC standard</span>
+  <span class="tech-note">Dominant in Indian IT services. Typed, verbose, but battle-tested at massive scale. Spring ecosystem is enormous.</span>
+  <button class="verdict-btn" onclick="sendPrompt('What should a MERN developer know about Spring Boot for MNC interviews?')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Go (Golang) / Python FastAPI</span>
+  <span class="tag tag-w">Interview differentiator</span>
+  <span class="tech-note">Go for ultra-low latency microservices (Uber, Cloudflare). FastAPI for ML-adjacent APIs. Go compiles to single binary — zero runtime overhead.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Why do companies like Uber and Cloudflare use Go instead of Node.js?')">Deep dive ↗</button>
+</div>
+
+<div class="section-divider">Frontend</div>
+
+<div class="layer-label"><i class="ti ti-brand-react" aria-hidden="true"></i>Frontend</div>
+<div class="stack-cell">
+  <span class="tech-name">React + Next.js</span>
+  <span class="tag tag-g">You know this</span>
+  <span class="tech-note">SSR/SSG, App Router, RSC. Industry default for product companies. Next.js 14+ App Router is the current production standard.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Angular 17+</span>
+  <span class="tag tag-b">Enterprise default</span>
+  <span class="tech-note">Opinionated, full framework. Strongly typed with TypeScript by default. Preferred in Indian banking, insurance, and large enterprise IT.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Why do enterprise companies prefer Angular over React?')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Vue 3 / Nuxt / SvelteKit</span>
+  <span class="tag tag-n">Growing</span>
+  <span class="tech-note">Vue dominant in China-adjacent companies. SvelteKit compiles away the framework — zero runtime bundle. Real differentiator for performance-focused roles.</span>
+</div>
+
+<div class="section-divider">Relational database (OLTP)</div>
+
+<div class="layer-label"><i class="ti ti-database" aria-hidden="true"></i>SQL DB</div>
+<div class="stack-cell">
+  <span class="tech-name">PostgreSQL 15+</span>
+  <span class="tag tag-g">Best default</span>
+  <span class="tech-note">JSON support, PostGIS, full-text search, LISTEN/NOTIFY, logical replication. The correct answer for 90% of OLTP workloads. Master this.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Oracle DB / MySQL</span>
+  <span class="tag tag-b">Legacy MNC</span>
+  <span class="tech-note">Oracle: banking, telecom, government contracts. MySQL: legacy web apps, WordPress hosts. Both are being slowly replaced by PostgreSQL in greenfield projects.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">CockroachDB / PlanetScale / Spanner</span>
+  <span class="tag tag-w">Distributed SQL</span>
+  <span class="tech-note">Horizontally scalable SQL. Spanner is Google's internal database. CockroachDB is Postgres-compatible. Use when sharding PostgreSQL becomes painful.</span>
+  <button class="verdict-btn" onclick="sendPrompt('When does a company move from PostgreSQL to CockroachDB or Google Spanner?')">Deep dive ↗</button>
+</div>
+
+<div class="section-divider">NoSQL / Document store</div>
+
+<div class="layer-label"><i class="ti ti-file-text" aria-hidden="true"></i>NoSQL</div>
+<div class="stack-cell">
+  <span class="tech-name">MongoDB Atlas</span>
+  <span class="tag tag-g">You know this</span>
+  <span class="tech-note">Document model. Right for flexible schemas, time-series, content. Wrong for financial transactions and complex joins. Don't use it as a PostgreSQL replacement.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Cassandra / DynamoDB</span>
+  <span class="tag tag-b">Massive scale</span>
+  <span class="tech-note">Leaderless replication. Write-heavy, high cardinality. Netflix, Instagram, Discord use Cassandra. DynamoDB is AWS-managed. Zero joins — design schema around queries.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Explain Cassandra wide-column model and when to use it over MongoDB')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Firestore / Bigtable / HBase</span>
+  <span class="tag tag-n">Specialized</span>
+  <span class="tech-note">Firestore: real-time sync for mobile apps. Bigtable/HBase: petabyte-scale analytics, IoT telemetry. Hadoop ecosystem but being replaced by cloud-native.</span>
+</div>
+
+<div class="section-divider">Cache layer</div>
+
+<div class="layer-label"><i class="ti ti-bolt" aria-hidden="true"></i>Cache</div>
+<div class="stack-cell">
+  <span class="tech-name">Redis 7 (ElastiCache)</span>
+  <span class="tag tag-g">Industry standard</span>
+  <span class="tech-note">Strings, hashes, sorted sets, pub/sub, streams. Master all 5 data structures — each has different interview relevance. Cluster mode for horizontal scale.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Deep dive Redis data structures and when to use each one in system design')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Memcached / Hazelcast</span>
+  <span class="tag tag-n">Niche</span>
+  <span class="tech-note">Memcached: simpler, multi-threaded, no persistence. Hazelcast: in-memory data grid for Java ecosystem, distributed computing. Mostly encountered in legacy Java shops.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Dragonfly / KeyDB</span>
+  <span class="tag tag-w">Emerging</span>
+  <span class="tech-note">Redis-compatible, multi-threaded (Redis is single-threaded per shard). 25x throughput claims. Too new for most enterprise but interview-worthy to know about.</span>
+</div>
+
+<div class="section-divider">Message queue / event streaming</div>
+
+<div class="layer-label"><i class="ti ti-arrows-exchange" aria-hidden="true"></i>Queue</div>
+<div class="stack-cell">
+  <span class="tech-name">RabbitMQ / BullMQ</span>
+  <span class="tag tag-g">Node.js native</span>
+  <span class="tech-note">RabbitMQ: complex routing, work queues, fanout. BullMQ: Redis-backed job queues for Node.js. Use for task processing; NOT a good fit for event sourcing.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Apache Kafka (MSK)</span>
+  <span class="tag tag-b">System design essential</span>
+  <span class="tech-note">Append-only log. Retained, replayable, partitioned. The correct answer for event sourcing, CDC, audit logs, and high-throughput pipelines. Know this deeply for MNC interviews.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Explain Kafka partitions, consumer groups, and exactly-once semantics for interviews')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Pulsar / Kinesis / NATS</span>
+  <span class="tag tag-n">Alternatives</span>
+  <span class="tech-note">Pulsar: Kafka alternative with multi-tenancy, tiered storage. Kinesis: AWS-managed, less flexible. NATS: ultra-fast, lightweight, no persistence — for internal microservice comms.</span>
+</div>
+
+<div class="section-divider">Search engine</div>
+
+<div class="layer-label"><i class="ti ti-search" aria-hidden="true"></i>Search</div>
+<div class="stack-cell">
+  <span class="tech-name">Elasticsearch / OpenSearch</span>
+  <span class="tag tag-g">Industry default</span>
+  <span class="tech-note">Full-text + geo + aggregations. OpenSearch is AWS's open-source fork. Know inverted index internals — frequently asked in senior design interviews.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Explain how Elasticsearch inverted index works and how data flows from PostgreSQL to ES')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Solr / Lucene</span>
+  <span class="tag tag-n">Legacy</span>
+  <span class="tech-note">Elasticsearch is built on Lucene. Solr is also Lucene-based. You'll find Solr in legacy Java enterprise. Not worth learning from scratch — learn ES instead.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Typesense / Meilisearch / Algolia</span>
+  <span class="tag tag-w">Modern alternatives</span>
+  <span class="tech-note">Typesense/Meili: simpler ops, instant search, typo-tolerance. Algolia: SaaS, expensive, dead simple. All three replace ES for product search at smaller scale. Algolia is interview-safe to mention.</span>
+</div>
+
+<div class="section-divider">Cloud infrastructure</div>
+
+<div class="layer-label"><i class="ti ti-cloud" aria-hidden="true"></i>Cloud</div>
+<div class="stack-cell">
+  <span class="tech-name">AWS (primary) / GCP</span>
+  <span class="tag tag-g">Standard</span>
+  <span class="tech-note">AWS dominates market share. GCP is preferred for ML/data workloads (BigQuery, Vertex AI). Know core AWS: EC2, S3, RDS, EKS, Lambda, CloudFront, VPC, IAM.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Azure</span>
+  <span class="tag tag-b">MNC / enterprise</span>
+  <span class="tech-note">Dominant in Indian IT services (TCS, Infosys clients are often on Azure due to Microsoft enterprise agreements). AKS for Kubernetes, Cosmos DB, Azure Service Bus.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">GCP / Multi-cloud</span>
+  <span class="tag tag-n">ML-heavy orgs</span>
+  <span class="tech-note">GCP: BigQuery (fastest OLAP), Vertex AI, Spanner. Multi-cloud is expensive operationally — most companies are single-cloud. Mention it cautiously in interviews.</span>
+</div>
+
+<div class="section-divider">Container orchestration</div>
+
+<div class="layer-label"><i class="ti ti-ship" aria-hidden="true"></i>Orchestration</div>
+<div class="stack-cell">
+  <span class="tech-name">Docker + Kubernetes (EKS/GKE)</span>
+  <span class="tag tag-g">Non-negotiable</span>
+  <span class="tech-note">You must know Kubernetes at a conceptual level for any senior role. Pods, Deployments, Services, Ingress, HPA, ConfigMaps, Secrets. EKS is the AWS managed flavor.</span>
+  <button class="verdict-btn" onclick="sendPrompt('What Kubernetes concepts must a MERN developer know for MNC interviews?')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">AWS ECS / Fargate</span>
+  <span class="tag tag-n">Simpler K8s alt</span>
+  <span class="tech-note">ECS: AWS-native container orchestration. Fargate removes server management. Easier than Kubernetes but less portable. Common in AWS-first small teams.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Nomad / OpenShift</span>
+  <span class="tag tag-n">Niche</span>
+  <span class="tech-note">Nomad (HashiCorp): simpler than K8s, handles non-container workloads. OpenShift: Red Hat's K8s distribution, common in on-premise enterprise. Not interview-critical.</span>
+</div>
+
+<div class="section-divider">Observability</div>
+
+<div class="layer-label"><i class="ti ti-chart-line" aria-hidden="true"></i>Observability</div>
+<div class="stack-cell">
+  <span class="tech-name">Datadog / New Relic</span>
+  <span class="tag tag-g">SaaS standard</span>
+  <span class="tech-note">Metrics, traces, logs in one platform. Expensive but zero ops overhead. Datadog dominates product companies. Know APM, distributed tracing, and dashboard creation.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Prometheus + Grafana + Jaeger</span>
+  <span class="tag tag-b">Open source standard</span>
+  <span class="tech-note">Prometheus for metrics (pull-based, PromQL). Grafana for dashboards. Jaeger/Tempo for distributed tracing. This combo is the interview-safe answer for any system design question about observability.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Explain the three pillars of observability: metrics, logs, and traces with real examples')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">ELK Stack / OpenTelemetry</span>
+  <span class="tag tag-n">Logging layer</span>
+  <span class="tech-note">ELK (Elasticsearch + Logstash + Kibana): structured log aggregation. OpenTelemetry: vendor-neutral instrumentation standard — instrument once, export to any backend. Learn OTel — it's becoming the standard.</span>
+</div>
+
+<div class="section-divider">CI/CD pipeline</div>
+
+<div class="layer-label"><i class="ti ti-git-merge" aria-hidden="true"></i>CI/CD</div>
+<div class="stack-cell">
+  <span class="tech-name">GitHub Actions + ArgoCD</span>
+  <span class="tag tag-g">Modern standard</span>
+  <span class="tech-note">GitHub Actions for CI (build, test, Docker push). ArgoCD for GitOps-based CD to Kubernetes. This is the current gold standard for product companies.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Jenkins / Azure DevOps</span>
+  <span class="tag tag-b">Enterprise / MNC</span>
+  <span class="tech-note">Jenkins: self-hosted, highly configurable, heavily used in Indian IT services. Azure DevOps: end-to-end Microsoft stack. Both are declining in greenfield but dominant in legacy enterprise.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">GitLab CI / CircleCI / Tekton</span>
+  <span class="tag tag-n">Alternatives</span>
+  <span class="tech-note">GitLab CI: strong if company already uses GitLab. CircleCI: fast, simple YAML config. Tekton: Kubernetes-native pipelines. Tekton knowledge is rare and impressive in interviews.</span>
+</div>
+
+<div class="section-divider">API layer</div>
+
+<div class="layer-label"><i class="ti ti-api" aria-hidden="true"></i>API style</div>
+<div class="stack-cell">
+  <span class="tech-name">REST + OpenAPI / GraphQL</span>
+  <span class="tag tag-g">You know this</span>
+  <span class="tech-note">REST for external APIs. GraphQL for mobile/multi-client with varied data needs. OpenAPI (Swagger) for documentation and contract-first design. Standard interview territory.</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">gRPC + Protocol Buffers</span>
+  <span class="tag tag-b">Internal microservices</span>
+  <span class="tech-note">Binary protocol, strongly typed, bidirectional streaming. 7-10x faster than REST for internal service communication. Used by Google, Netflix, Uber. Critical to understand for senior system design.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Explain gRPC vs REST for internal microservice communication with examples')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">tRPC / TRPC + WebSockets</span>
+  <span class="tag tag-n">TypeScript-first</span>
+  <span class="tech-note">tRPC: end-to-end type safety, no codegen, Next.js native. WebSockets for real-time. You already know WS from BakeRoute. tRPC is worth knowing for full-stack TypeScript roles.</span>
+</div>
+
+<div class="section-divider">Analytics / data warehouse</div>
+
+<div class="layer-label"><i class="ti ti-table" aria-hidden="true"></i>Analytics</div>
+<div class="stack-cell">
+  <span class="tech-name">ClickHouse</span>
+  <span class="tag tag-g">Best open-source OLAP</span>
+  <span class="tech-note">Column-oriented. Fastest analytical queries at scale. Used by Cloudflare, Uber, ByteDance. Never run analytics on your PostgreSQL OLTP — this is the answer to "where do you put it instead."</span>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">BigQuery / Redshift / Snowflake</span>
+  <span class="tag tag-b">Cloud OLAP</span>
+  <span class="tech-note">BigQuery: serverless, pay-per-query, fastest to onboard. Redshift: AWS-native, columnar. Snowflake: multi-cloud, popular in US enterprises. All are correct answers in interviews; pick by cloud alignment.</span>
+  <button class="verdict-btn" onclick="sendPrompt('Compare BigQuery, Redshift, and Snowflake — when would you choose each?')">Deep dive ↗</button>
+</div>
+<div class="stack-cell">
+  <span class="tech-name">Apache Spark / Flink / dbt</span>
+  <span class="tag tag-n">Data engineering</span>
+  <span class="tech-note">Spark: batch processing at petabyte scale. Flink: real-time stream processing. dbt: SQL-based transformation layer sitting on top of a warehouse. Data engineering track, not backend track.</span>
+</div>
+
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem">
+<div style="background:var(--color-background-success);border-radius:var(--border-radius-md);padding:12px 14px">
+  <div style="font-size:12px;font-weight:500;color:var(--color-text-success);margin-bottom:6px">Interview must-knows</div>
+  <div style="font-size:12px;color:var(--color-text-success);line-height:1.6">PostgreSQL · Redis · Kafka · Elasticsearch · Docker/K8s · Prometheus+Grafana · gRPC · REST/GraphQL · AWS core</div>
+</div>
+<div style="background:var(--color-background-warning);border-radius:var(--border-radius-md);padding:12px 14px">
+  <div style="font-size:12px;font-weight:500;color:var(--color-text-warning);margin-bottom:6px">High-value differentiators</div>
+  <div style="font-size:12px;color:var(--color-text-warning);line-height:1.6">Go/gRPC · Cassandra data modeling · ClickHouse · OpenTelemetry · CockroachDB · Flink stream processing · Tekton</div>
+</div>
+<div style="background:var(--color-background-danger);border-radius:var(--border-radius-md);padding:12px 14px">
+  <div style="font-size:12px;font-weight:500;color:var(--color-text-danger);margin-bottom:6px">Don't waste time on</div>
+  <div style="font-size:12px;color:var(--color-text-danger);line-height:1.6">Solr · Memcached · HBase · Nomad · Dragonfly · Multi-cloud ops · Oracle RDBMS (unless banking role)</div>
+</div>
+</div>
