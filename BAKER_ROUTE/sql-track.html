@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Mastery Track — 90 Lessons · 3 Stages</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #0f0f1a;
+  --bg3: #13131f;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8e8f0;
+  --muted: #6b6b88;
+  --accent: #7c5cfc;
+  --accent2: #fc5c7d;
+  --accent3: #5cfcb8;
+  --gold: #ffc857;
+  --s1: #5cfcb8;
+  --s2: #7c5cfc;
+  --s3: #fc5c7d;
+  --theory: #3b82f6;
+  --coding: #10b981;
+  --quiz: #f59e0b;
+  --boss: #ef4444;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(124,92,252,0.5);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: left 0.12s ease, top 0.12s ease;
+}
+
+/* Grid bg */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124,92,252,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,92,252,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.orb1 { width: 500px; height: 500px; background: rgba(124,92,252,0.15); top: -100px; left: -100px; animation: drift1 12s ease-in-out infinite; }
+.orb2 { width: 400px; height: 400px; background: rgba(92,252,184,0.1); bottom: -80px; right: -80px; animation: drift2 15s ease-in-out infinite; }
+.orb3 { width: 300px; height: 300px; background: rgba(252,92,125,0.08); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: pulse-orb 6s ease-in-out infinite; }
+
+@keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+@keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-40px)} }
+@keyframes pulse-orb { 0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1)} 50%{opacity:1;transform:translate(-50%,-50%) scale(1.2)} }
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(124,92,252,0.15);
+  border: 1px solid rgba(124,92,252,0.3);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 28px;
+  animation: fadeDown 0.6s ease both;
+}
+.badge-dot { width: 7px; height: 7px; background: var(--accent3); border-radius: 50%; animation: blink 1.5s ease infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(44px, 7vw, 96px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.hero-title span.grad1 { background: linear-gradient(135deg, #fff 0%, var(--s1) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-title span.grad2 { background: linear-gradient(135deg, var(--s2) 0%, var(--s3) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.stats-row {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+}
+.stat-label { font-size: 13px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.stat-div { width: 1px; height: 40px; background: var(--border); align-self: center; }
+
+.cta-group {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: none;
+  cursor: none;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 40px rgba(124,92,252,0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 50px rgba(124,92,252,0.6); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  cursor: none;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+
+/* scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  animation: bounce 2s ease infinite;
+}
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+/* ========== SECTION COMMON ========== */
+section { position: relative; z-index: 1; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 16px;
+  line-height: 1.05;
+}
+
+/* ========== STAGE SELECTOR ========== */
+.track-nav {
+  padding: 80px 0 0;
+}
+.stage-tabs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+.stage-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  cursor: none;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.stage-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: 100px;
+}
+.stage-tab.s1-tab::before { background: rgba(92,252,184,0.1); }
+.stage-tab.s2-tab::before { background: rgba(124,92,252,0.1); }
+.stage-tab.s3-tab::before { background: rgba(252,92,125,0.1); }
+.stage-tab.active::before { opacity: 1; }
+.stage-tab.active.s1-tab { border-color: var(--s1); color: var(--s1); }
+.stage-tab.active.s2-tab { border-color: var(--s2); color: var(--s2); }
+.stage-tab.active.s3-tab { border-color: var(--s3); color: var(--s3); }
+.stage-tab:hover::before { opacity: 1; }
+
+.stage-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.06);
+}
+
+/* ========== STAGE PANEL ========== */
+.stage-panel { display: none; }
+.stage-panel.active { display: block; animation: fadeUp 0.4s ease both; }
+
+.stage-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.stage-info {}
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.s1-badge { background: rgba(92,252,184,0.12); color: var(--s1); border: 1px solid rgba(92,252,184,0.25); }
+.s2-badge { background: rgba(124,92,252,0.12); color: var(--s2); border: 1px solid rgba(124,92,252,0.25); }
+.s3-badge { background: rgba(252,92,125,0.12); color: var(--s3); border: 1px solid rgba(252,92,125,0.25); }
+
+.stage-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.stage-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.meta-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.progress-bar-wrap {
+  width: 200px;
+  flex-shrink: 0;
+  padding: 20px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.pb-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+.pb-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+.pb-fill { height: 100%; border-radius: 100px; transition: width 1.5s cubic-bezier(.16,1,.3,1); width: 0; }
+.s1-fill { background: linear-gradient(90deg, var(--s1), #2dd4bf); }
+.s2-fill { background: linear-gradient(90deg, var(--s2), #a78bfa); }
+.s3-fill { background: linear-gradient(90deg, var(--s3), #fb923c); }
+.pb-pct { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
+
+/* ========== QUEST CARD ========== */
+.quest-list { display: flex; flex-direction: column; gap: 20px; margin-bottom: 32px; }
+
+.quest-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.quest-card:hover { border-color: rgba(255,255,255,0.12); }
+
+.quest-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 26px;
+  cursor: none;
+  user-select: none;
+}
+.quest-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.quest-info { flex: 1; }
+.quest-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.quest-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+.quest-pills {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.qp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.qp-lessons { background: rgba(255,255,255,0.06); color: var(--muted); }
+.qp-boss { background: rgba(239,68,68,0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
+
+.quest-chevron {
+  color: var(--muted);
+  transition: transform 0.35s cubic-bezier(.16,1,.3,1);
+  flex-shrink: 0;
+}
+.quest-card.open .quest-chevron { transform: rotate(180deg); }
+
+.quest-body {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(.16,1,.3,1);
+}
+.quest-body-inner {
+  padding: 0 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ========== MISSION ========== */
+.mission {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.mission-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: none;
+  user-select: none;
+}
+.mission-dot {
+  width: 32px; height: 32px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.mission-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  flex: 1;
+}
+.mission-lessons {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.mission-toggle {
+  color: var(--muted);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.mission.open .mission-toggle { transform: rotate(180deg); }
+
+.mission-body {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s cubic-bezier(.16,1,.3,1);
+}
+.mission-body-inner {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ========== LESSON ROW ========== */
+.lesson-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  cursor: none;
+}
+.lesson-row:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.06);
+  transform: translateX(4px);
+}
+
+.lesson-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 80px;
+  justify-content: center;
+}
+.type-theory { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
+.type-coding { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+.type-quiz { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
+
+.lesson-name {
+  font-size: 14px;
+  color: var(--text);
+  flex: 1;
+}
+
+.lesson-check {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  transition: all 0.2s;
+  cursor: none;
+}
+.lesson-check.done { background: var(--accent3); border-color: var(--accent3); color: #000; }
+.lesson-row:hover .lesson-check:not(.done) { border-color: rgba(255,255,255,0.3); }
+
+/* ========== BOSS CARD ========== */
+.boss-card {
+  background: linear-gradient(135deg, rgba(239,68,68,0.06), rgba(239,68,68,0.02));
+  border: 1.5px solid rgba(239,68,68,0.25);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+.boss-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(239,68,68,0.08), transparent 70%);
+  pointer-events: none;
+}
+.boss-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(239,68,68,0.15);
+  border: 1px solid rgba(239,68,68,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  animation: boss-pulse 2s ease infinite;
+}
+@keyframes boss-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.3)} 50%{box-shadow:0 0 0 8px rgba(239,68,68,0)} }
+
+.boss-info {}
+.boss-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #ef4444;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.boss-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.boss-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.boss-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.boss-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(239,68,68,0.1);
+  color: #fca5a5;
+}
+
+/* ========== STAGE BOSS ========== */
+.stage-boss {
+  background: linear-gradient(135deg, rgba(252,200,0,0.05), rgba(252,92,125,0.05));
+  border: 2px solid rgba(255,200,87,0.3);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.stage-boss::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(255,200,87,0.06), transparent 60%);
+  pointer-events: none;
+}
+.sb-crown {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: block;
+  animation: crown-float 3s ease-in-out infinite;
+}
+@keyframes crown-float { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-8px) rotate(5deg)} }
+
+.sb-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sb-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.sb-desc { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 600px; margin-bottom: 20px; }
+.sb-chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.sb-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: rgba(255,200,87,0.08);
+  border: 1px solid rgba(255,200,87,0.2);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== SQL PARTICLE CANVAS ========== */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ========== FEATURES BAR ========== */
+.features {
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 80px 0 0;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fi-icon {
+  font-size: 28px;
+  display: block;
+}
+.fi-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+.fi-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* ========== CURRICULUM SECTION ========== */
+.curriculum { padding: 80px 0 120px; }
+
+/* ========== FLOATING SQL ANIMATION ========== */
+.sql-float-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.sql-float {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: rgba(124,92,252,0.12);
+  white-space: nowrap;
+  animation: sqlDrift linear infinite;
+}
+
+@keyframes sqlDrift {
+  0% { transform: translateY(100vh) rotate(-10deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-200px) rotate(-10deg); opacity: 0; }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 640px) {
+  .stats-row { gap: 20px; }
+  .stat-div { display: none; }
+  .stage-header { flex-direction: column; }
+  .progress-bar-wrap { width: 100%; }
+  .quest-header { padding: 16px 18px; }
+  .quest-body-inner { padding: 0 18px 18px; }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* Lesson type icons */
+.li { font-size: 12px; }
+</style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="orb1 hero-orb"></div>
+  <div class="orb2 hero-orb"></div>
+  <div class="orb3 hero-orb"></div>
+
+  <div class="sql-float-wrap" id="hero-floats"></div>
+
+  <div class="badge-pill">
+    <span class="badge-dot"></span>
+    SQL MASTERY TRACK · VERSION 5.1
+  </div>
+
+  <h1 class="hero-title">
+    <span class="grad1">Master SQL.</span><br>
+    <span class="grad2">Stage by Stage.</span>
+  </h1>
+
+  <p class="hero-sub">
+    90 lessons across 3 stages. Theory, coding challenges, boss fights, and a final interview gauntlet — all in one structured track.
+  </p>
+
+  <div class="stats-row">
+    <div class="stat">
+      <span class="stat-num" data-count="90">0</span>
+      <span class="stat-label">Lessons</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <span class="stat-num" data-count="3">0</span>
+      <span class="stat-label">Stages</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <span class="stat-num" data-count="12">0</span>
+      <span class="stat-label">Quests</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <span class="stat-num" data-count="8">0</span>
+      <span class="stat-label">Boss Fights</span>
+    </div>
+  </div>
+
+  <div class="cta-group">
+    <a href="#curriculum" class="btn-primary">
+      ⚔️ Start the Track
+    </a>
+    <a href="#curriculum" class="btn-secondary">
+      📋 View Curriculum
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== FEATURES BAR ===== -->
+<section class="features reveal">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-item">
+        <span class="fi-icon">🎯</span>
+        <span class="fi-title">Structured Progression</span>
+        <p class="fi-desc">Locked stage unlocks — you earn Stage 2 only by defeating the Stage Boss.</p>
+      </div>
+      <div class="feature-item">
+        <span class="fi-icon">⚡</span>
+        <span class="fi-title">3 Lesson Types</span>
+        <p class="fi-desc">Theory builds mental models. Coding builds muscle. Quizzes close gaps.</p>
+      </div>
+      <div class="feature-item">
+        <span class="fi-icon">🐲</span>
+        <span class="fi-title">Boss Fights</span>
+        <p class="fi-desc">Timed, multi-phase challenges that expose exactly where you're weak.</p>
+      </div>
+      <div class="feature-item">
+        <span class="fi-icon">🏅</span>
+        <span class="fi-title">Job Ready Badge</span>
+        <p class="fi-desc">≥80% on the Final Interview = verified "Job Ready." Less = repeat it.</p>
+      </div>
+      <div class="feature-item">
+        <span class="fi-icon">🧠</span>
+        <span class="fi-title">Visual Learning</span>
+        <p class="fi-desc">2D motion diagrams for joins, recursion, window frames, and B-Tree indexes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CURRICULUM ===== -->
+<section class="curriculum" id="curriculum">
+  <div class="container">
+
+    <div class="section-label reveal">THE CURRICULUM</div>
+    <h2 class="section-title reveal">90 Lessons.<br>Zero filler.</h2>
+
+    <!-- Stage tabs -->
+    <div class="track-nav">
+      <div class="stage-tabs reveal">
+        <button class="stage-tab s1-tab active" data-stage="s1">
+          <span class="stage-num">01</span>
+          🌱 Beginner — The Data Realm
+        </button>
+        <button class="stage-tab s2-tab" data-stage="s2">
+          <span class="stage-num">02</span>
+          🔮 Intermediate — The Join Dimension
+        </button>
+        <button class="stage-tab s3-tab" data-stage="s3">
+          <span class="stage-num">03</span>
+          ⚙️ Advanced — The Architect's Forge
+        </button>
+      </div>
+
+      <!-- ===== STAGE 1 ===== -->
+      <div class="stage-panel active" id="s1">
+        <div class="stage-header reveal">
+          <div class="stage-info">
+            <div class="stage-badge s1-badge">🌱 STAGE 1 · BEGINNER</div>
+            <div class="stage-title">"The Data Realm"</div>
+            <div class="stage-meta">
+              <span class="meta-chip">📚 30 Lessons</span>
+              <span class="meta-chip">🗡️ 4 Quests</span>
+              <span class="meta-chip">👑 1 Stage Boss</span>
+            </div>
+          </div>
+          <div class="progress-bar-wrap reveal">
+            <div class="pb-label">YOUR PROGRESS</div>
+            <div class="pb-track"><div class="pb-fill s1-fill" data-target="0"></div></div>
+            <div class="pb-pct" style="color:var(--s1)">0%</div>
+          </div>
+        </div>
+
+        <div class="quest-list">
+
+          <!-- Quest 1 -->
+          <div class="quest-card reveal" id="q1">
+            <div class="quest-header" onclick="toggleQuest('q1')">
+              <div class="quest-icon" style="background:rgba(92,252,184,0.1);border:1px solid rgba(92,252,184,0.2)">🔍</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 01</div>
+                <div class="quest-name">First Queries</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">6 lessons</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m1-1">
+                  <div class="mission-header" onclick="toggleMission('m1-1')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 1.1 — What is SQL?</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-theory">📖 THEORY</span>
+                        <span class="lesson-name">Databases and tables explained</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-theory">📖 THEORY</span>
+                        <span class="lesson-name">SELECT syntax deep dive</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-coding">💻 CODING</span>
+                        <span class="lesson-name">Your first SELECT * query</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mission" id="m1-2">
+                  <div class="mission-header" onclick="toggleMission('m1-2')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 1.2 — Filtering Data</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-coding">💻 CODING</span>
+                        <span class="lesson-name">WHERE clause fundamentals</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-quiz">📝 QUIZ</span>
+                        <span class="lesson-name">Filter logic assessment</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-coding">💻 CODING</span>
+                        <span class="lesson-name">Combining AND / OR / NOT</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 2 -->
+          <div class="quest-card reveal" id="q2">
+            <div class="quest-header" onclick="toggleQuest('q2')">
+              <div class="quest-icon" style="background:rgba(92,252,184,0.1);border:1px solid rgba(92,252,184,0.2)">📊</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 02</div>
+                <div class="quest-name">Ordering the Chaos</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">6 lessons</span>
+                  <span class="qp qp-boss">🐉 BOSS</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m2-1">
+                  <div class="mission-header" onclick="toggleMission('m2-1')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 2.1 — Sorting Results</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-theory">📖 THEORY</span>
+                        <span class="lesson-name">ORDER BY mechanics</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-coding">💻 CODING</span>
+                        <span class="lesson-name">ASC vs DESC practice</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mission" id="m2-2">
+                  <div class="mission-header" onclick="toggleMission('m2-2')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 2.2 — Limiting Output</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-coding">💻 CODING</span>
+                        <span class="lesson-name">LIMIT and OFFSET</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-coding">💻 CODING</span>
+                        <span class="lesson-name">Pagination pattern</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                      <div class="lesson-row" onclick="toggleLesson(this)">
+                        <span class="lesson-type-badge type-quiz">📝 QUIZ</span>
+                        <span class="lesson-name">Sorting & limiting assessment</span>
+                        <div class="lesson-check">✓</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boss-card">
+                  <div class="boss-icon">🗂️</div>
+                  <div class="boss-info">
+                    <div class="boss-label">⚔️ BOSS FIGHT</div>
+                    <div class="boss-name">The Librarian</div>
+                    <div class="boss-desc">Sort 10,000 books by genre, year, and rating. Timed challenge: 5 minutes.</div>
+                    <div class="boss-tags">
+                      <span class="boss-tag">⏱ 5 MIN</span>
+                      <span class="boss-tag">ORDER BY</span>
+                      <span class="boss-tag">LIMIT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 3 -->
+          <div class="quest-card reveal" id="q3">
+            <div class="quest-header" onclick="toggleQuest('q3')">
+              <div class="quest-icon" style="background:rgba(92,252,184,0.1);border:1px solid rgba(92,252,184,0.2)">📈</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 03</div>
+                <div class="quest-name">Aggregations Awakening</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">8 lessons</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m3-1">
+                  <div class="mission-header" onclick="toggleMission('m3-1')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 3.1 — COUNT, SUM, AVG, MIN, MAX</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Aggregate function overview</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Sales total calculation</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Employee statistics</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m3-2">
+                  <div class="mission-header" onclick="toggleMission('m3-2')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 3.2 — GROUP BY</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Grouping logic</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Revenue by category</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Monthly sales aggregation</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m3-3">
+                  <div class="mission-header" onclick="toggleMission('m3-3')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 3.3 — HAVING</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Filter grouped results</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-quiz">📝 QUIZ</span><span class="lesson-name">Aggregation mastery quiz</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 4 -->
+          <div class="quest-card reveal" id="q4">
+            <div class="quest-header" onclick="toggleQuest('q4')">
+              <div class="quest-icon" style="background:rgba(92,252,184,0.1);border:1px solid rgba(92,252,184,0.2)">🔧</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 04</div>
+                <div class="quest-name">Data Shaping</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">4 lessons</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m4-1">
+                  <div class="mission-header" onclick="toggleMission('m4-1')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 4.1 — String & Date Functions</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">UPPER, LOWER, TRIM, CONCAT</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">DATE functions (YEAR, MONTH, DATEDIFF)</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m4-2">
+                  <div class="mission-header" onclick="toggleMission('m4-2')">
+                    <div class="mission-dot" style="background:rgba(92,252,184,0.1)">🎯</div>
+                    <div class="mission-name">Mission 4.2 — CASE Expressions</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Conditional column logic</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-quiz">📝 QUIZ</span><span class="lesson-name">Stage 1 exit quiz</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 1 Boss -->
+        <div class="stage-boss reveal">
+          <span class="sb-crown">💰</span>
+          <div class="sb-label">👑 STAGE BOSS</div>
+          <div class="sb-name">The Tax Collector</div>
+          <div class="sb-desc">Multi-part sales aggregation with grouping, filtering, and date ranges. Pass all 3 phases to unlock Stage 2. No partial credit.</div>
+          <div class="sb-chips">
+            <span class="sb-chip">📋 3 Phases</span>
+            <span class="sb-chip">⚠️ Must Pass All</span>
+            <span class="sb-chip">🔒 Unlocks Stage 2</span>
+            <span class="sb-chip">GROUP BY · HAVING · DATE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STAGE 2 ===== -->
+      <div class="stage-panel" id="s2">
+        <div class="stage-header reveal">
+          <div class="stage-info">
+            <div class="stage-badge s2-badge">🔮 STAGE 2 · INTERMEDIATE</div>
+            <div class="stage-title">"The Join Dimension"</div>
+            <div class="stage-meta">
+              <span class="meta-chip">📚 35 Lessons</span>
+              <span class="meta-chip">🗡️ 4 Quests</span>
+              <span class="meta-chip">👑 1 Stage Boss</span>
+            </div>
+          </div>
+          <div class="progress-bar-wrap reveal">
+            <div class="pb-label">YOUR PROGRESS</div>
+            <div class="pb-track"><div class="pb-fill s2-fill" data-target="0"></div></div>
+            <div class="pb-pct" style="color:var(--s2)">0%</div>
+          </div>
+        </div>
+
+        <div class="quest-list">
+
+          <!-- Quest 5 -->
+          <div class="quest-card reveal" id="q5">
+            <div class="quest-header" onclick="toggleQuest('q5')">
+              <div class="quest-icon" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2)">🔗</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 05</div>
+                <div class="quest-name">JOINs Unlocked</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">10 lessons</span>
+                  <span class="qp qp-boss">🐉 BOSS</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m5-1">
+                  <div class="mission-header" onclick="toggleMission('m5-1')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 5.1 — INNER JOIN</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Visual join explanation (Venn diagrams)</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Employee-Department join</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Orders-Products join</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m5-2">
+                  <div class="mission-header" onclick="toggleMission('m5-2')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 5.2 — LEFT JOIN / RIGHT JOIN</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Outer join semantics</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Find customers with no orders</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Left join with NULL handling</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m5-3">
+                  <div class="mission-header" onclick="toggleMission('m5-3')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 5.3 — FULL OUTER JOIN</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Symmetric difference pattern</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-quiz">📝 QUIZ</span><span class="lesson-name">JOIN types assessment</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m5-4">
+                  <div class="mission-header" onclick="toggleMission('m5-4')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 5.4 — SELF JOIN and CROSS JOIN</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">When and why to self/cross join</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Employee-Manager hierarchy</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="boss-card">
+                  <div class="boss-icon">🏢</div>
+                  <div class="boss-info">
+                    <div class="boss-label">⚔️ BOSS FIGHT</div>
+                    <div class="boss-name">The Merger</div>
+                    <div class="boss-desc">4-table join to produce a quarterly performance report. No partial passes.</div>
+                    <div class="boss-tags">
+                      <span class="boss-tag">4 TABLES</span>
+                      <span class="boss-tag">INNER + LEFT</span>
+                      <span class="boss-tag">QUARTERLY REPORT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 6 -->
+          <div class="quest-card reveal" id="q6">
+            <div class="quest-header" onclick="toggleQuest('q6')">
+              <div class="quest-icon" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2)">🌀</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 06</div>
+                <div class="quest-name">Subquery Mastery</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">8 lessons</span>
+                  <span class="qp qp-boss">🐉 BOSS</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m6-1">
+                  <div class="mission-header" onclick="toggleMission('m6-1')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 6.1 — Scalar Subqueries</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Subquery fundamentals</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Find products above average price</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m6-2">
+                  <div class="mission-header" onclick="toggleMission('m6-2')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 6.2 — IN and EXISTS</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Correlated subqueries</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">EXISTS vs IN performance tradeoff</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m6-3">
+                  <div class="mission-header" onclick="toggleMission('m6-3')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 6.3 — Subqueries in FROM</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Derived table pattern</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Nested aggregation</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-quiz">📝 QUIZ</span><span class="lesson-name">Subquery mastery check</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="boss-card">
+                  <div class="boss-icon">🔮</div>
+                  <div class="boss-info">
+                    <div class="boss-label">⚔️ BOSS FIGHT</div>
+                    <div class="boss-name">The Nested Oracle</div>
+                    <div class="boss-desc">3-level nested query challenge. Each level depends on the output of the previous.</div>
+                    <div class="boss-tags">
+                      <span class="boss-tag">3-LEVEL NESTING</span>
+                      <span class="boss-tag">DERIVED TABLES</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 7 -->
+          <div class="quest-card reveal" id="q7">
+            <div class="quest-header" onclick="toggleQuest('q7')">
+              <div class="quest-icon" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2)">⚡</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 07</div>
+                <div class="quest-name">CTEs — The Power Mode</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">7 lessons</span>
+                  <span class="qp qp-boss">🐉 BOSS</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m7-1">
+                  <div class="mission-header" onclick="toggleMission('m7-1')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 7.1 — WITH clause basics</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">CTE vs subquery — when to use which</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Single CTE refactor</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Multi-CTE pipeline</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m7-2">
+                  <div class="mission-header" onclick="toggleMission('m7-2')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 7.2 — Recursive CTEs</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Tree traversal logic</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Org chart flattening</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Fibonacci with SQL (mind-bender)</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="boss-card">
+                  <div class="boss-icon">👑</div>
+                  <div class="boss-info">
+                    <div class="boss-label">⚔️ BOSS FIGHT</div>
+                    <div class="boss-name">The Recursive King</div>
+                    <div class="boss-desc">Employee hierarchy + budget rollup using a recursive CTE. Deep nesting required.</div>
+                    <div class="boss-tags">
+                      <span class="boss-tag">RECURSIVE CTE</span>
+                      <span class="boss-tag">HIERARCHY</span>
+                      <span class="boss-tag">BUDGET ROLLUP</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 8 -->
+          <div class="quest-card reveal" id="q8">
+            <div class="quest-header" onclick="toggleQuest('q8')">
+              <div class="quest-icon" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2)">🪟</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 08</div>
+                <div class="quest-name">Window Functions</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">10 lessons</span>
+                  <span class="qp qp-boss">🐉 BOSS</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="mission" id="m8-1">
+                  <div class="mission-header" onclick="toggleMission('m8-1')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 8.1 — ROW_NUMBER, RANK, DENSE_RANK</div>
+                    <span class="mission-lessons">3 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">OVER() clause anatomy</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Top-N per group pattern</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Ranking sales reps</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m8-2">
+                  <div class="mission-header" onclick="toggleMission('m8-2')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 8.2 — LAG and LEAD</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Month-over-month comparison</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Running difference calculation</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m8-3">
+                  <div class="mission-header" onclick="toggleMission('m8-3')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 8.3 — SUM/AVG OVER (Running totals)</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Cumulative revenue</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">7-day rolling average</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mission" id="m8-4">
+                  <div class="mission-header" onclick="toggleMission('m8-4')">
+                    <div class="mission-dot" style="background:rgba(124,92,252,0.1)">🎯</div>
+                    <div class="mission-name">Mission 8.4 — PARTITION BY</div>
+                    <span class="mission-lessons">2 lessons</span>
+                    <svg class="mission-toggle" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--muted)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                  <div class="mission-body">
+                    <div class="mission-body-inner">
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Rank within department</span><div class="lesson-check">✓</div></div>
+                      <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-quiz">📝 QUIZ</span><span class="lesson-name">Window function final assessment</span><div class="lesson-check">✓</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="boss-card">
+                  <div class="boss-icon">📊</div>
+                  <div class="boss-info">
+                    <div class="boss-label">⚔️ BOSS FIGHT</div>
+                    <div class="boss-name">The Analyst</div>
+                    <div class="boss-desc">Full business analytics report using 5+ window functions. All in one query.</div>
+                    <div class="boss-tags">
+                      <span class="boss-tag">5+ WINDOW FNs</span>
+                      <span class="boss-tag">SINGLE QUERY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2 Boss -->
+        <div class="stage-boss reveal">
+          <span class="sb-crown">🐲</span>
+          <div class="sb-label">👑 STAGE BOSS</div>
+          <div class="sb-name">The Data Dragon</div>
+          <div class="sb-desc">Timed 20-minute challenge: JOIN + CTE + Window Function combined problem. All 4 phases must pass. No hints allowed. This determines if you truly belong in Stage 3.</div>
+          <div class="sb-chips">
+            <span class="sb-chip">⏱ 20 MIN</span>
+            <span class="sb-chip">4 Phases</span>
+            <span class="sb-chip">🚫 No Hints</span>
+            <span class="sb-chip">🔒 Unlocks Stage 3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STAGE 3 ===== -->
+      <div class="stage-panel" id="s3">
+        <div class="stage-header reveal">
+          <div class="stage-info">
+            <div class="stage-badge s3-badge">⚙️ STAGE 3 · ADVANCED</div>
+            <div class="stage-title">"The Architect's Forge"</div>
+            <div class="stage-meta">
+              <span class="meta-chip">📚 25 Lessons</span>
+              <span class="meta-chip">🗡️ 4 Quests</span>
+              <span class="meta-chip">👑 Final Gauntlet</span>
+            </div>
+          </div>
+          <div class="progress-bar-wrap reveal">
+            <div class="pb-label">YOUR PROGRESS</div>
+            <div class="pb-track"><div class="pb-fill s3-fill" data-target="0"></div></div>
+            <div class="pb-pct" style="color:var(--s3)">0%</div>
+          </div>
+        </div>
+
+        <div class="quest-list">
+          <!-- Quest 9 -->
+          <div class="quest-card reveal" id="q9">
+            <div class="quest-header" onclick="toggleQuest('q9')">
+              <div class="quest-icon" style="background:rgba(252,92,125,0.1);border:1px solid rgba(252,92,125,0.2)">🏗️</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 09</div>
+                <div class="quest-name">Database Design</div>
+                <div class="quest-pills"><span class="qp qp-lessons">6 lessons</span></div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Normalization (1NF → 3NF)</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">ER Diagram to Schema</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Foreign Keys and Referential Integrity</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-quiz">📝 QUIZ</span><span class="lesson-name">Schema design checkpoint</span><div class="lesson-check">✓</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 10 -->
+          <div class="quest-card reveal" id="q10">
+            <div class="quest-header" onclick="toggleQuest('q10')">
+              <div class="quest-icon" style="background:rgba(252,92,125,0.1);border:1px solid rgba(252,92,125,0.2)">⚡</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 10</div>
+                <div class="quest-name">Indexes and Performance</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">6 lessons</span>
+                  <span class="qp qp-boss">🐉 BOSS</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">How indexes work (B-Tree internals)</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">EXPLAIN ANALYZE — reading query plans</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Index design patterns</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Avoiding full table scans</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:12px"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">Optimization challenge — 5s → 0.1s</span><div class="lesson-check">✓</div></div>
+                <div class="boss-card">
+                  <div class="boss-icon">🔧</div>
+                  <div class="boss-info">
+                    <div class="boss-label">⚔️ BOSS FIGHT</div>
+                    <div class="boss-name">The Optimizer</div>
+                    <div class="boss-desc">Fix 5 broken, slow queries in 15 minutes. Each query has a measurable performance target.</div>
+                    <div class="boss-tags"><span class="boss-tag">⏱ 15 MIN</span><span class="boss-tag">5 QUERIES</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 11 -->
+          <div class="quest-card reveal" id="q11">
+            <div class="quest-header" onclick="toggleQuest('q11')">
+              <div class="quest-icon" style="background:rgba(252,92,125,0.1);border:1px solid rgba(252,92,125,0.2)">🔐</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 11</div>
+                <div class="quest-name">Transactions & Concurrency</div>
+                <div class="quest-pills"><span class="qp qp-lessons">5 lessons</span></div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">ACID properties</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Isolation levels and dirty reads</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Deadlock scenarios</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Optimistic vs pessimistic locking</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)"><span class="lesson-type-badge type-quiz">📝 QUIZ</span><span class="lesson-name">Transactions assessment</span><div class="lesson-check">✓</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest 12 -->
+          <div class="quest-card reveal" id="q12">
+            <div class="quest-header" onclick="toggleQuest('q12')">
+              <div class="quest-icon" style="background:rgba(252,92,125,0.1);border:1px solid rgba(252,92,125,0.2)">🎖️</div>
+              <div class="quest-info">
+                <div class="quest-num">QUEST 12</div>
+                <div class="quest-name">Interview Gauntlet</div>
+                <div class="quest-pills">
+                  <span class="qp qp-lessons">8 lessons</span>
+                  <span class="qp qp-boss">🏆 FINAL BOSS</span>
+                </div>
+              </div>
+              <svg class="quest-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="quest-body">
+              <div class="quest-body-inner">
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-theory">📖 THEORY</span><span class="lesson-name">Top 50 SQL interview patterns</span><div class="lesson-check">✓</div></div>
+                <div class="lesson-row" onclick="toggleLesson(this)" style="margin-bottom:4px"><span class="lesson-type-badge type-coding">💻 CODING</span><span class="lesson-name">LeetCode-Hard Problem Set ×5</span><div class="lesson-check">✓</div></div>
+                <div class="boss-card" style="margin-top:12px; background: linear-gradient(135deg, rgba(255,200,87,0.08), rgba(252,92,125,0.05)); border-color: rgba(255,200,87,0.35);">
+                  <div class="boss-icon" style="background:rgba(255,200,87,0.15); border-color:rgba(255,200,87,0.4); font-size:28px">🏆</div>
+                  <div class="boss-info">
+                    <div class="boss-label" style="color:var(--gold)">🎯 FINAL INTERVIEW</div>
+                    <div class="boss-name">The Final Interview</div>
+                    <div class="boss-desc">10 questions. 45 minutes. No hints. Pass rate &lt;60% = repeat. ≥80% = "Job Ready" badge earned.</div>
+                    <div class="boss-tags">
+                      <span class="boss-tag" style="background:rgba(255,200,87,0.1);color:var(--gold)">⏱ 45 MIN</span>
+                      <span class="boss-tag" style="background:rgba(255,200,87,0.1);color:var(--gold)">10 Qs</span>
+                      <span class="boss-tag" style="background:rgba(255,200,87,0.1);color:var(--gold)">🚫 No Hints</span>
+                      <span class="boss-tag" style="background:rgba(255,200,87,0.1);color:var(--gold)">🏅 ≥80% = Job Ready</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end track-nav -->
+  </div><!-- end container -->
+</section>
+
+<script>
+// ===== CURSOR =====
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  cursor.style.left = (mx - 6) + 'px';
+  cursor.style.top = (my - 6) + 'px';
+  rx += (mx - rx) * 0.18;
+  ry += (my - ry) * 0.18;
+  ring.style.left = (rx - 18) + 'px';
+  ring.style.top = (ry - 18) + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+document.querySelectorAll('button, a, .quest-header, .mission-header, .lesson-row').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
+  el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+});
+
+// ===== COUNT UP =====
+function countUp(el) {
+  const target = +el.dataset.count;
+  let val = 0;
+  const inc = target / 50;
+  const t = setInterval(() => {
+    val += inc;
+    if (val >= target) { el.textContent = target; clearInterval(t); }
+    else el.textContent = Math.floor(val);
+  }, 25);
+}
+const counted = new Set();
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !counted.has(e.target)) {
+      counted.add(e.target);
+      countUp(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+// ===== REVEAL =====
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// ===== STAGE TABS =====
+document.querySelectorAll('.stage-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.stage-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.stage-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.stage).classList.add('active');
+    // Animate progress bars
+    setTimeout(() => {
+      document.querySelectorAll('#' + tab.dataset.stage + ' .pb-fill').forEach(bar => {
+        const target = parseInt(bar.dataset.target) || 0;
+        bar.style.width = target + '%';
+      });
+    }, 100);
+  });
+});
+
+// ===== QUEST TOGGLE =====
+function toggleQuest(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.quest-body');
+  const isOpen = card.classList.contains('open');
+  if (isOpen) {
+    body.style.height = body.scrollHeight + 'px';
+    requestAnimationFrame(() => { body.style.height = '0'; });
+    card.classList.remove('open');
+  } else {
+    card.classList.add('open');
+    body.style.height = body.scrollHeight + 'px';
+    body.addEventListener('transitionend', () => { body.style.height = 'auto'; }, { once: true });
+  }
+}
+
+// ===== MISSION TOGGLE =====
+function toggleMission(id) {
+  const m = document.getElementById(id);
+  const body = m.querySelector('.mission-body');
+  const isOpen = m.classList.contains('open');
+  if (isOpen) {
+    body.style.height = body.scrollHeight + 'px';
+    requestAnimationFrame(() => { body.style.height = '0'; });
+    m.classList.remove('open');
+    // Recompute parent quest height
+    const qBody = m.closest('.quest-body');
+    if (qBody) { qBody.style.height = 'auto'; setTimeout(() => { qBody.style.height = qBody.scrollHeight + 'px'; }, 10); }
+  } else {
+    m.classList.add('open');
+    const prevH = body.parentElement.closest('.quest-body') ? body.parentElement.closest('.quest-body').scrollHeight : 0;
+    body.style.height = body.scrollHeight + 'px';
+    body.addEventListener('transitionend', () => { body.style.height = 'auto'; }, { once: true });
+    const qBody = m.closest('.quest-body');
+    if (qBody && qBody.style.height !== 'auto') {
+      setTimeout(() => { qBody.style.height = qBody.scrollHeight + 'px'; }, 10);
+    }
+  }
+}
+
+// ===== LESSON CHECK =====
+function toggleLesson(row) {
+  const check = row.querySelector('.lesson-check');
+  check.classList.toggle('done');
+  // Ripple
+  const ripple = document.createElement('div');
+  ripple.style.cssText = 'position:absolute;border-radius:50%;background:rgba(92,252,184,0.15);width:60px;height:60px;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);animation:rippleAnim 0.6s ease forwards;pointer-events:none;';
+  row.style.position = 'relative';
+  row.style.overflow = 'hidden';
+  row.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+}
+
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = '@keyframes rippleAnim{to{transform:translate(-50%,-50%) scale(4);opacity:0}}';
+document.head.appendChild(rippleStyle);
+
+// ===== SQL PARTICLE CANVAS =====
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+const sqlKeywords = ['SELECT', 'FROM', 'WHERE', 'JOIN', 'GROUP BY', 'ORDER BY', 'HAVING', 'WITH', 'OVER()', 'COUNT(*)', 'SUM()', 'ROW_NUMBER()', 'PARTITION BY', 'INNER JOIN', 'LEFT JOIN', 'DISTINCT', 'AS', 'NULL', 'LIMIT', 'INDEX'];
+const particles = Array.from({length: 20}, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height + canvas.height,
+  word: sqlKeywords[Math.floor(Math.random() * sqlKeywords.length)],
+  speed: 0.3 + Math.random() * 0.5,
+  opacity: 0.05 + Math.random() * 0.08,
+  size: 10 + Math.random() * 6,
+}));
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.font = '13px JetBrains Mono, monospace';
+  particles.forEach(p => {
+    p.y -= p.speed;
+    if (p.y < -30) {
+      p.y = canvas.height + 30;
+      p.x = Math.random() * canvas.width;
+      p.word = sqlKeywords[Math.floor(Math.random() * sqlKeywords.length)];
+    }
+    ctx.globalAlpha = p.opacity;
+    ctx.fillStyle = '#7c5cfc';
+    ctx.fillText(p.word, p.x, p.y);
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ===== PROGRESS BARS ON LOAD =====
+setTimeout(() => {
+  document.querySelectorAll('#s1 .pb-fill').forEach(b => { b.style.width = (b.dataset.target || 0) + '%'; });
+}, 400);
+</script>
+
+</body>
+</html>
